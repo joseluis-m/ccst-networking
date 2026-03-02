@@ -34,7 +34,7 @@ El modelo OSI fue propuesto en 1978 por la ISO como un marco de referencia de si
 - **Capa 4** → TCP, UDP, QUIC.
 - **Capas 5-7** → Se agrupan en el espacio de aplicación.
 
-**Proceso de encapsulación paso a paso** (según el libro):
+**Proceso de encapsulación paso a paso**:
 
 1. La aplicación envía un bloque de datos al protocolo de transporte a través de un socket.
 2. El protocolo de transporte encapsula los datos en un **segmento**.
