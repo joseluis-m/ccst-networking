@@ -294,7 +294,3 @@ Una VLAN es un **segmento de red de capa 2 definido lógicamente**, no físicame
 - **Routing:** El host envía paquetes para redes remotas al **default gateway** (MAC router + IP destino final). El router consulta su **tabla de enrutamiento (RIB)** y aplica **longest prefix match** para elegir la mejor ruta. Fuentes de rutas: conectadas, estáticas, dinámicas (RIP, OSPF, EIGRP, IS-IS, BGP). En cada salto, la **MAC cambia** pero la **IP se mantiene**. El **TTL** se decrementa para evitar routing loops. **ICMP redirect** optimiza el gateway; **DHCP relay** permite DHCP entre segmentos.
 - **Switching:** El switch aprende direcciones MAC del tráfico de origen (**bridge learning**) y construye una **MAC address table**. Si conoce el puerto destino → reenvía solo ahí (**filtrado**). Si no → flooding por todos los puertos. **STP** previene loops bloqueando puertos redundantes. **VLANs** crean broadcast domains lógicos separados; cada VLAN necesita un router para comunicarse con otra. **VLAN 1** es la VLAN por defecto donde se configura la IP de gestión del switch.
 - **Layer 2 vs. Layer 3:** Switches L2 conmutan por MAC (sin TTL, sin separar broadcasts salvo VLANs, STP contra loops). Routers y switches L3 enrutan por IP (con TTL, separan broadcasts, protocolos de enrutamiento contra loops). El término "Layer 3 switch" = router con hardware de conmutación de alta velocidad.
-
----
-
-✅ Dominio 4 completado. Listo para continuar con el Dominio 5.
