@@ -316,7 +316,3 @@ Para conectar un dispositivo a una red Wi-Fi se necesita:
 - **Wi-Fi (802.11):** Espectro no licenciado en 2,4/5/6 GHz. Estándares: 802.11n (Wi-Fi 4), ac (Wi-Fi 5), ax (Wi-Fi 6/6E), be (Wi-Fi 7). Usa **CSMA/CA** para compartir el medio. **Beam forming** dirige la señal. Principales interferencias: microondas, Bluetooth, paredes gruesas. **Celular** usa espectro licenciado con infraestructura dedicada (RAN + Mobile Core + Backhaul), autenticación SIM, y cobertura global.
 - **Endpoints:** Escritorios y servidores (cableados), portátiles y móviles (Wi-Fi/celular), dispositivos **IoT** (sensores con gateway para convertir a IP), teléfonos IP (VoIP, PoE). **Middleboxes**: firewalls, IDS, proxies, load balancers.
 - **Configuración y diagnóstico:** `ipconfig /all` (Windows), `ifconfig`/`ip addr` (macOS/Linux) para verificar IP/MAC/gateway/DNS. `ping` verifica conectividad (ICMP Echo). `traceroute`/`tracert` descubre la ruta (TTL incremental). `nslookup` verifica DNS. Para Wi-Fi: configurar **SSID** + contraseña + modo **WPA2/WPA3** (Personal=PSK o Enterprise=RADIUS).
-
----
-
-✅ Dominio 3 completado. Listo para continuar con el Dominio 4.
