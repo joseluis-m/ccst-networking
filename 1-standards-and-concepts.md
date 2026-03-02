@@ -72,7 +72,7 @@ Un frame envuelve un packet. Cada vez que un paquete cruza un router, la trama s
 
 | Concepto | Definición |
 |----------|------------|
-| **Bandwidth** | Capacidad máxima teórica de un enlace (ej: 1 Gbps). |
+| **Bandwidth** | Capacidad máxima teórica de un enlace (por ejemplo, 1 Gbps). |
 | **Throughput** | Cantidad de datos que realmente se transfieren en condiciones reales. Siempre menor que el bandwidth. |
 | **Goodput** | Datos útiles entregados sin error. Siempre menor que el throughput (debido a headers y retransmisiones). |
 
@@ -100,7 +100,7 @@ Variación del delay entre paquetes consecutivos. Es especialmente dañino para 
 
 | Herramienta | Qué mide | Cuándo usarla |
 |-------------|----------|---------------|
-| **Speed test** (ej: Ookla) | Rendimiento de tu conexión a Internet y del proveedor local | Verificar que el ISP entrega el servicio contratado |
+| **Speed test** (por ejemplo, Ookla) | Rendimiento de tu conexión a Internet y del proveedor local | Verificar que el ISP entrega el servicio contratado |
 | **iPerf** | Rendimiento entre dos puntos cualesquiera (LAN o Internet) | Medir rendimiento de la red local o entre sitios específicos |
 
 iPerf requiere instalar un servidor (`iperf3 -s`) y un cliente (`iperf3 -c <IP>`). Envía 10 bloques de datos por TCP y reporta throughput del emisor y receptor.
