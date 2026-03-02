@@ -247,7 +247,3 @@ NTP sincroniza los relojes de red con precisión de milisegundos. Funciona con u
 - Las redes se clasifican por alcance: **PAN < LAN/WLAN < CAN < MAN < WAN**. Las topologías más relevantes hoy son **star** (LAN) y **hub-and-spoke/ring** (WAN).
 - En cloud, **IaaS** ofrece infraestructura, **PaaS** añade plataforma de desarrollo, y **SaaS** entrega la aplicación completa. La elección entre público y privado depende de seguridad, costes y cultura corporativa.
 - **TCP** (fiable, orientado a conexión) y **UDP** (rápido, sin conexión) son los dos transportes fundamentales. Los protocolos de aplicación clave son: FTP/SFTP/TFTP (ficheros), HTTP/HTTPS (web), DNS (nombres), DHCP (asignación IP), ICMP (diagnóstico), NTP (tiempo).
-
----
-
-✅ Dominio 1 completado. Listo para continuar con el Dominio 2.
