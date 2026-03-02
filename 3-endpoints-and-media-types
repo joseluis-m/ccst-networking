@@ -1,0 +1,322 @@
+# Dominio 3: Endpoints and Media Types
+
+## Resumen ejecutivo
+
+Este dominio cubre los medios físicos que transportan datos (cobre, fibra, inalámbrico), los dispositivos finales que generan y consumen tráfico (hosts, móviles, IoT), y las herramientas prácticas para configurar y verificar la conectividad de red en los principales sistemas operativos. Es un dominio muy visual y práctico: el examen presenta imágenes de cables/conectores para identificar y pide interpretar salidas de comandos como `ipconfig`, `ping` y `traceroute`.
+
+---
+
+## Conceptos clave
+
+### 3.1 — Cables y conectores en LANs
+
+🔑 *Analogía:* Los cables de red son como las carreteras de una ciudad — el cobre son las calles asfaltadas locales (baratas, suficientes para distancias cortas), la fibra es la autopista de alta velocidad (más cara, pero necesaria para largas distancias y mucho tráfico).
+
+#### Tipos de cable de cobre
+
+**Cable coaxial (coax):** Un conductor central rodeado por un blindaje (shield) metálico. El blindaje absorbe las interferencias externas. La señal viaja por el conductor interno y el retorno va por el blindaje conectado a tierra. Fue el primer medio Ethernet (thicknet y thinnet) pero ya no se usa en LANs modernas. Todavía se encuentra en conexiones de cable de TV/Internet (DOCSIS).
+
+**Par trenzado (twisted pair):** El medio dominante en LANs actuales. Contiene pares de cables de cobre trenzados entre sí. El trenzado hace que los campos magnéticos de cada hilo se cancelen mutuamente, reduciendo la interferencia — es la principal defensa contra el ruido electromagnético. Existe en dos variantes:
+
+- **UTP (Unshielded Twisted Pair):** Solo trenzado, sin blindaje adicional. El más habitual en oficinas.
+- **STP (Shielded Twisted Pair):** Añade una capa de blindaje metálico alrededor de los pares. Mayor protección contra interferencias, pero más caro y difícil de instalar.
+
+**Categorías de cable Ethernet:**
+
+| Categoría | Velocidad máxima | Distancia máxima | Uso típico |
+|-----------|------------------|------------------|------------|
+| **Cat 5e** | 1 Gbps | 100 m | Oficinas, hogares |
+| **Cat 6** | 1 Gbps (10 Gbps hasta 55 m) | 100 m | Redes empresariales |
+| **Cat 6a** | 10 Gbps | 100 m | Data centers, backbone |
+| **Cat 7** | 10 Gbps | 100 m | Entornos con alta interferencia (STP) |
+| **Cat 8** | 25–40 Gbps | 30 m | Conexiones cortas en data center |
+
+Todos los cables tienen una distancia máxima general de **100 metros** (excepto Cat 8). Más allá de esa distancia, la señal se degrada y se necesita fibra o un repetidor.
+
+#### Conectores de cobre
+
+| Conector | Pines | Uso principal |
+|----------|-------|---------------|
+| **RJ-45** | 8 (4 pares) | Ethernet — el conector estándar de LAN. Rectangular con lengüeta de enganche. |
+| **RJ-11** | 2-6 (1-3 pares) | Telefonía POTS (líneas analógicas). Más pequeño que el RJ-45. |
+| **Coaxial (BNC/F-type)** | 1 conductor central | Cable TV, DOCSIS. Conector circular con rosca o bayoneta. |
+
+**Cableado Ethernet T-568A/T-568B:** Los dos estándares de cableado para RJ-45. Se debe usar el mismo en ambos extremos del cable. Si se usa T-568A en un extremo y T-568B en el otro, se crea un **cable cruzado (crossover)** que conecta transmisión con recepción directamente. La mayoría de equipos modernos detectan y ajustan automáticamente (Auto-MDI/MDI-X).
+
+#### Tipos de cable de fibra óptica
+
+La fibra transmite datos como pulsos de luz a través de un núcleo de vidrio. La luz rebota dentro del revestimiento (cladding) hasta llegar al otro extremo. La fibra es **inmune a interferencias electromagnéticas**.
+
+| Característica | **Multimode** | **Single-mode** |
+|----------------|---------------|-----------------|
+| Núcleo | Grande (50-62,5 µm) | Pequeño (8-10 µm) |
+| Fuente de luz | LED (baja potencia) | Láser (alta potencia) |
+| Distancia máxima | ~1,5 km | ~80 km (ampliable con amplificadores) |
+| Coste | Menor | Mayor |
+| Atenuación/Dispersión | Mayor (la luz "rebota") | Menor |
+| Uso típico | Interior de edificios, campus | WAN, larga distancia, backbone |
+
+La fibra normalmente se usa en **pares** — un cable para transmitir y otro para recibir. **WDM (Wave Division Multiplexing)** permite transmitir múltiples señales por la misma fibra usando diferentes longitudes de onda (colores de luz).
+
+**Atenuación** = pérdida de potencia de la señal (se mide en decibelios, dB). **Dispersión** = la señal se "ensancha" al viajar; es peor en multimode.
+
+#### Conectores de fibra óptica
+
+| Conector | Forma | Tipo de conexión | Uso típico |
+|----------|-------|------------------|------------|
+| **LC** (Lucent/Little Connector) | Rectangular pequeño | Enganche por pestaña | El más usado en redes actuales, alta densidad |
+| **SC** (Subscriber/Square Connector) | Cuadrado | Enganche push-pull | Común, robusto |
+| **ST** (Straight Tip) | Redondo | Giro y presión (bayoneta) | Redes legacy, data centers antiguos |
+| **FC** (Ferrule Connector) | Redondo | Rosca (atornillado) | Entornos de vibración, telecomunicaciones |
+| **MPO** (Multi-fiber Push-On) | Rectangular grande | Push-pull, múltiples fibras | Cableado de alta densidad en data centers |
+
+Cada tipo puede ser **UPC** (corte recto a 90° — menor dispersión, menor reflexión) o **APC** (corte en ángulo de 8° — mayor reflexión pero absorbida por el cladding; necesario con láseres de alta potencia para evitar daños al transmisor).
+
+#### Interfaces pluggables (SFP)
+
+Los routers y switches de alto rendimiento usan **interfaces pluggables** que permiten insertar módulos según el tipo de fibra o cobre necesario. Los dos tipos principales son **GBIC** (más antiguo, mayor tamaño) y **SFP (Small Form-factor Pluggable)**, que es el estándar actual. Variantes: SFP+ (10G), QSFP (40G), QSFP28 (100G).
+
+#### Power over Ethernet (PoE)
+
+PoE permite alimentar dispositivos pequeños (teléfonos IP, cámaras, APs Wi-Fi) directamente a través del cable Ethernet, eliminando la necesidad de un enchufe separado.
+
+| Estándar | Potencia máxima | Uso típico |
+|----------|-----------------|------------|
+| **802.3af (Type 1)** | 12,95 W | Teléfonos IP, cámaras básicas |
+| **802.3at (Type 2, PoE+)** | 25,5 W | APs Wi-Fi, cámaras PTZ |
+| **802.3bt (Type 3, PoE++)** | 51 W | APs Wi-Fi 6, pantallas |
+| **802.3bt (Type 4, PoE++)** | 71,3 W | Ordenadores thin client, puntos de venta |
+
+---
+
+### 3.2 — Tecnologías Wi-Fi, celular y cableadas
+
+🔑 *Analogía:* Wi-Fi es como hablar en una cafetería ruidosa donde todos compiten por ser oídos (espectro no licenciado, compartido). Celular es como un auditorio con sistema de megafonía profesional — controlado, con alcance global, pero requiere infraestructura costosa y licencias. Cobre y fibra son como conversaciones cara a cara en privado — más fiables pero requieren cables físicos.
+
+#### Interferencia en cobre
+
+La **interferencia** se produce cuando campos magnéticos externos alteran la señal eléctrica del cable. Causas habituales: cables de alimentación cercanos, motores eléctricos, hornos microondas, fluorescentes, transmisores de radio.
+
+Contramedidas: **trenzado** (los campos magnéticos opuestos se cancelan) y **blindaje** (malla metálica conectada a tierra que absorbe interferencias externas).
+
+Medidas de interferencia en cables:
+
+- **NEXT (Near-End Crosstalk):** Cuánto ruido externo rechaza el cable. Se mide en el extremo del transmisor. Indica la calidad potencial del cable.
+- **FEXT (Far-End Crosstalk):** Interferencia medida en el extremo receptor. Indica la calidad real de una instalación existente.
+
+**Cables plenum:** Cables con recubrimiento especial que no emite gases tóxicos al quemarse. Obligatorio en espacios de retorno de aire acondicionado (plenum) de edificios comerciales.
+
+#### Ventajas de la fibra frente al cobre
+
+La fibra transmite con luz, no con electricidad, por lo que es **completamente inmune a interferencias electromagnéticas**. Ofrece mayor ancho de banda, mayor distancia y mayor seguridad (no emite campos magnéticos detectables). Su desventaja es el coste y la fragilidad del vidrio.
+
+#### Estándares Wi-Fi (IEEE 802.11)
+
+Wi-Fi opera en **espectro no licenciado** — cualquiera puede instalar un AP sin permiso gubernamental siempre que no supere los límites de potencia (~250 mW).
+
+| Estándar 802.11 | Nombre Wi-Fi | Frecuencia | Velocidad máxima | Nota clave |
+|------------------|-------------|------------|------------------|------------|
+| **802.11b** | — | 2,4 GHz | 11 Mbps | Primer estándar masivo |
+| **802.11a** | — | 5 GHz | 54 Mbps | Menos interferencia que 2,4 GHz |
+| **802.11g** | — | 2,4 GHz | 54 Mbps | Compatible con 802.11b |
+| **802.11n** | **Wi-Fi 4** | 2,4 / 5 GHz | 600 Mbps | Introdujo MIMO y dual-band |
+| **802.11ac** | **Wi-Fi 5** | 5 GHz | 6,9 Gbps | MU-MIMO, beamforming, canales más anchos |
+| **802.11ax** | **Wi-Fi 6/6E** | 2,4 / 5 / 6 GHz | 9,6 Gbps | OFDMA, mejor en alta densidad. 6E añade banda de 6 GHz |
+| **802.11be** | **Wi-Fi 7** | 2,4 / 5 / 6 GHz | 46 Gbps | Canales de 320 MHz, Multi-Link Operation |
+
+**Comparativa de frecuencias:**
+
+| Banda | Ventajas | Desventajas |
+|-------|----------|-------------|
+| **2,4 GHz** | Mayor alcance, mejor penetración de paredes | Muy congestionada (microondas, Bluetooth, monitores bebé). Solo 3 canales no solapados (1, 6, 11). |
+| **5 GHz** | Más canales disponibles, menos interferencia | Menor alcance, peor penetración de paredes |
+| **6 GHz** | Canales aún más amplios, casi sin interferencia | Muy corto alcance, dispositivos nuevos necesarios |
+
+**CSMA/CA (Collision Avoidance):** Wi-Fi usa un sistema de acceso al medio diferente al Ethernet cableado (CSMA/CD). En lugar de detectar colisiones después de que ocurran, Wi-Fi las **evita** usando señalización Request to Send / Clear to Send antes de transmitir. Todos los dispositivos conectados a un mismo AP y canal comparten el ancho de banda.
+
+**Beam forming:** Técnica que usa múltiples antenas (phased array) para dirigir la señal hacia un dispositivo concreto en lugar de emitir en todas direcciones, mejorando alcance y rendimiento.
+
+**DFS (Dynamic Frequency Selection):** Los APs modernos escanean automáticamente el espectro y seleccionan el canal con menos interferencia.
+
+#### Fuentes de interferencia Wi-Fi
+
+Las principales fuentes son: hornos microondas (operan a 2,4 GHz), dispositivos Bluetooth, monitores de bebé, walkie-talkies, motores eléctricos, fluorescentes y ciertas bombillas LED. Los materiales del entorno también afectan: un muro de ladrillo deja pasar ~20% de la señal; una chapa metálica ~30%; una pared de yeso ~70%.
+
+#### Redes celulares (espectro licenciado)
+
+Las redes celulares operan en **espectro licenciado** — los operadores pagan por el derecho exclusivo de usar frecuencias específicas, lo que elimina la interferencia de otros dispositivos.
+
+**Componentes principales de una red 5G:**
+
+| Componente | Función |
+|------------|---------|
+| **RAN (Radio Access Network)** | Torres y estaciones base (gNodeB) que gestionan la conexión inalámbrica con los dispositivos |
+| **Mobile Core** | Servidores que autentican usuarios (SIM/IMSI), gestionan túneles, rastrean ubicación y facturan |
+| **Backhaul** | Red de transporte (normalmente fibra) que conecta el RAN con el core |
+
+**Autenticación celular:** Basada en la **tarjeta SIM**, que contiene un identificador único de 64 bits (**IMSI**) y una clave privada para crear túneles cifrados.
+
+**Wi-Fi vs. Celular:**
+
+| Aspecto | Wi-Fi | Celular |
+|---------|-------|---------|
+| Espectro | **No licenciado** (libre) | **Licenciado** (pagado, exclusivo) |
+| Alcance | ~30 m interior | Kilómetros (torres) |
+| Roaming | No entre diferentes redes | Sí, global y transparente |
+| QoS | Sin garantías | Garantías de servicio |
+| Coste infra. | Bajo (un AP) | Muy alto (torres, core, backhaul) |
+| Control | Cualquier usuario | Solo operadores autorizados |
+
+---
+
+### 3.3 — Dispositivos endpoint
+
+🔑 *Analogía:* Si la red es el sistema de carreteras, los endpoints son los edificios que generan y reciben los "paquetes" — hogares (PCs), oficinas móviles (smartphones), sensores automáticos (IoT) y almacenes de procesamiento (servidores).
+
+#### Hosts (ordenadores)
+
+| Tipo | Conexión habitual | Características |
+|------|-------------------|-----------------|
+| **Ordenador de escritorio** | Cableada (Ethernet) | Workstations, POS en comercios, estaciones gráficas. Rara vez inalámbrico. |
+| **Portátil / 2-en-1** | Inalámbrica (Wi-Fi) | Diseñado para movilidad. Puede usar cable a través de docking station. |
+| **Servidor** | Cableada (Ethernet, a menudo múltiples interfaces) | Aloja webs, servicios cloud, bases de datos. Ubicado en data centers. |
+
+Internamente, todos ejecutan un **kernel** (funciones compartidas del SO: pila TCP/IP, drivers de red, gestión de memoria) y un **espacio de usuario** (aplicaciones individuales con memoria aislada que usan sockets para enviar/recibir paquetes). Los hosts Linux pueden crear **namespaces** para ejecutar múltiples hosts virtuales (contenedores), cada uno con su propia pila de red, interconectados mediante un bridge virtual y un **masquerade** (NAT interno).
+
+#### Dispositivos móviles
+
+Smartphones y tablets que se conectan principalmente vía Wi-Fi y/o red celular, raramente por cable. Dominados por dos sistemas operativos: **iOS** (Apple, propietario) y **Android** (Google, basado en kernel Linux de código abierto). Los dispositivos móviles generan una proporción creciente del tráfico total de Internet.
+
+#### Dispositivos IoT (Internet of Things)
+
+Un "thing" es cualquier dispositivo diseñado para monitorizar o controlar sistemas del mundo real y conectado a una red. Ejemplos: termostatos inteligentes, cámaras de seguridad, sensores agrícolas, dispositivos médicos (bombas de insulina, trackers de fitness), vehículos conectados, electrodomésticos.
+
+**Componentes de un dispositivo IoT:**
+1. **Comunicación** — Wi-Fi, Bluetooth, ZWave, PAN, CAN u otros protocolos de baja potencia.
+2. **Procesamiento y memoria** — Para recoger y formatear datos localmente.
+3. **Sensores** — Temperatura, movimiento, humedad, presión, etc.
+4. **Alimentación** — Batería, solar, alimentación del sistema host, o PoE.
+
+El **IoT Gateway** (hub) convierte los protocolos propietarios de los dispositivos IoT a IP estándar para transportar los datos por la red hasta el sistema de análisis central.
+
+#### IP Phone, impresora de red, otros
+
+- **IP Phone:** Teléfono que transmite voz como paquetes IP (VoIP). Normalmente alimentado por PoE y conectado al switch por Ethernet.
+- **Impresora de red:** Conectada vía Ethernet o Wi-Fi, con su propia dirección IP.
+- **Cámaras IP:** Videovigilancia conectada por Ethernet (PoE) o Wi-Fi.
+
+#### Middleboxes importantes
+
+- **Firewall:** Combina NAT, filtrado de paquetes, filtrado stateful y detección de intrusiones en un solo dispositivo. Desplegado en el perímetro de la red.
+- **IDS (Intrusion Detection System):** Examina el tráfico buscando malware, exfiltración de datos o ataques.
+- **Proxy/Gateway:** Termina la conexión del cliente y abre una nueva hacia el servidor, actuando como intermediario. Añade seguridad y control.
+- **Load balancer:** Distribuye tráfico entre múltiples servidores para equilibrar la carga.
+
+---
+
+### 3.4 — Configuración de conectividad de red por SO
+
+🔑 *Analogía:* Cada sistema operativo es como un idioma diferente para hacer la misma pregunta — "¿cuál es mi dirección?" se dice `ipconfig` en Windows, `ifconfig` en macOS, y `ip addr` en Linux moderno. El examen quiere que hables los tres idiomas.
+
+#### Comandos por sistema operativo
+
+| Acción | **Windows** | **macOS** | **Linux** |
+|--------|-------------|-----------|-----------|
+| Ver config. IP completa | `ipconfig /all` | `ifconfig` | `ifconfig` o `ip addr` |
+| Liberar IP DHCP | `ipconfig /release` | `sudo ipconfig set en0 BOOTP` | Depende de distro (dhclient -r) |
+| Renovar IP DHCP | `ipconfig /renew` | `sudo ipconfig set en0 DHCP` | Depende de distro (dhclient) |
+| Limpiar caché DNS | `ipconfig /flushdns` | `sudo dscacheutil -flushcache` | Depende del servicio DNS |
+| Ver tabla ARP | `arp -a` | `arp -a` | `arp -a` o `ip neigh` |
+| Ver tabla de rutas | `Get-NetRoute` (Powershell) | `netstat -rn` | `ip route` |
+| Ver MAC de interfaces | `getmac /v` | `ifconfig` (campo ether) | `ip link` |
+| Config. IP estática | GUI/`netsh` | `networksetup` / GUI | Editar `/etc/netplan/*.yaml` |
+| Shell CLI | **Powershell** | **Terminal** | **Terminal (bash/zsh)** |
+
+**Información que muestra `ipconfig /all` (Windows):**
+Dirección IPv4, dirección IPv6 link-local, máscara de subred, gateway por defecto, servidores DNS, dirección física (MAC), si la IP fue asignada por DHCP o manualmente, DHCP server, y tiempos de lease.
+
+**Información que muestra `ifconfig` (macOS/Linux):**
+Dirección IPv4 (inet), dirección IPv6 (inet6), máscara de red (netmask), dirección física (ether), prefijo IPv6 (prefixlen), scope (link-local o global), paquetes recibidos/transmitidos/perdidos.
+
+**`ip addr` (Linux moderno):** Similar a ifconfig pero con formato más compacto. Muestra también información de lease DHCP.
+
+#### Comandos de diagnóstico
+
+**`ping`** — Envía paquetes ICMP Echo Request al destino y espera ICMP Echo Reply. Verifica conectividad básica. Estrategia de diagnóstico escalonado:
+
+1. Ping al gateway por defecto → verifica conectividad local
+2. Ping a una IP remota → verifica enrutamiento
+3. Ping a un nombre de dominio → verifica DNS + enrutamiento
+
+Opciones útiles: `-c N` (número de paquetes), `-s SIZE` (tamaño del paquete), `-t TTL` (establecer TTL), `-4/-6` (forzar IPv4/IPv6).
+
+**`traceroute` (Linux/macOS) / `tracert` (Windows)** — Descubre la ruta hacia un destino incrementando el TTL de cada paquete: TTL=1 → el primer router responde con ICMP TTL Expired; TTL=2 → el segundo responde; y así sucesivamente hasta alcanzar el destino. Cada salto muestra la IP del router y el tiempo de ida y vuelta (RTT).
+
+Un **asterisco (\*)** en la salida significa que el router en ese salto no envía respuestas ICMP (deshabilitado por configuración) o que un firewall intermedio las bloquea. Los túneles ocultan routers intermedios del traceroute.
+
+Diferencia clave: Windows envía paquetes **ICMP Echo**, mientras que Linux/macOS envían paquetes **UDP**.
+
+**`nslookup`** — Consulta servidores DNS para resolver nombres de dominio a direcciones IP. Ejemplo: `nslookup www.cisco.com` devuelve la(s) IP(s) asociada(s). Útil para diagnosticar problemas de resolución de nombres.
+
+#### Configuración de cliente inalámbrico
+
+Para conectar un dispositivo a una red Wi-Fi se necesita:
+
+| Parámetro | Descripción |
+|-----------|-------------|
+| **SSID** | Nombre de la red inalámbrica. Identifica un conjunto de servicios (no un AP concreto). Cada SSID es un broadcast domain separado. |
+| **Contraseña/Clave** | Clave precompartida (PSK) o credenciales de usuario para autenticarse. |
+| **Modo de seguridad WPA** | Protocolo de cifrado y autenticación. |
+
+**Evolución de la seguridad Wi-Fi:**
+
+| Protocolo | Año | Claves | Estado |
+|-----------|-----|--------|--------|
+| **WEP** | 1999 | 64/128 bits | **Retirado en 2004.** Inseguro. Nunca usar. |
+| **WPA** | 2003 | 256 bits | Mejora significativa: integridad de mensajes + autenticación de usuarios. |
+| **WPA2** | 2004 | 256 bits | Cifrado AES. Estándar actual más extendido. |
+| **WPA3** | 2018 | 256+ bits | Más seguro. Protección contra ataques de diccionario offline. |
+
+**Personal vs. Enterprise:**
+
+- **WPA-PSK (Personal):** La clave pública se genera a partir del SSID y una contraseña compartida. No requiere servidor externo. Adecuado para hogares y pequeñas empresas.
+- **WPA Enterprise:** Usa un **servidor RADIUS externo** para generar la clave pública y autenticar a cada usuario individualmente. Más seguro porque el atacante no puede derivar la clave inicial. Necesario en entornos corporativos.
+
+**En Windows 11:** Settings → Network & Internet → Wi-Fi → Show available networks → Seleccionar SSID → Introducir contraseña. También se puede gestionar desde Quick Settings en la barra de tareas. La opción "Random hardware address" genera una MAC virtual para evitar tracking entre redes.
+
+**SSID oculto:** Si un AP no publicita su SSID, el usuario debe introducirlo manualmente para conectarse.
+
+**Guest network:** Un segundo SSID que permite acceso a Internet pero **no** a la red interna. Ideal para visitantes. Los dispositivos en SSIDs diferentes solo pueden comunicarse a través de un router.
+
+---
+
+## 🎯 Puntos críticos para el examen
+
+- **RJ-45 = Ethernet, RJ-11 = Telefonía.** El RJ-45 tiene 8 pines (4 pares); el RJ-11 tiene 2-6 pines. Saber diferenciarlos visualmente (RJ-45 es más ancho).
+- **Cat 5e soporta 1 Gbps; Cat 6a soporta 10 Gbps.** Todos tienen distancia máxima de 100 m (excepto Cat 8 con 30 m).
+- **Multimode = LED, distancias cortas (~1,5 km). Single-mode = Láser, largas distancias (~80 km).** El núcleo de multimode es más grande.
+- **Conectores de fibra:** LC es el más moderno y habitual (pequeño, rectangular). SC es cuadrado. ST es redondo con bayoneta. Aprender a identificarlos visualmente.
+- **UPC = corte recto (menor reflexión). APC = corte en ángulo (protege láseres potentes).** No son intercambiables.
+- **Wi-Fi usa espectro NO licenciado; celular usa espectro LICENCIADO.** Esta es una distinción fundamental y frecuente en el examen.
+- **2,4 GHz = mayor alcance pero más interferencia; 5 GHz = menor interferencia pero menor alcance.** Los microondas operan a 2,4 GHz — fuente clásica de interferencia Wi-Fi.
+- **CSMA/CD = Ethernet cableado (detecta colisiones). CSMA/CA = Wi-Fi (evita colisiones).** No confundir.
+- **`ipconfig` = Windows. `ifconfig` = macOS/Linux legacy. `ip addr` = Linux moderno.** El examen pide identificar qué comando va con qué SO.
+- **Traceroute usa TTL incremental.** Asterisco = router no responde ICMP o firewall bloquea. Windows usa `tracert`; Linux/macOS usan `traceroute`.
+- **WEP está retirado — nunca es una buena respuesta.** WPA2/WPA3 son los estándares actuales. Personal = PSK (sin servidor). Enterprise = RADIUS (con servidor).
+- **SSID identifica un conjunto de servicios**, no un AP concreto. Cada SSID = un broadcast domain separado.
+- **PoE alimenta dispositivos por el cable Ethernet.** 802.3af = ~13W, 802.3at = ~25W, 802.3bt = hasta 71W. Si el dispositivo necesita más potencia que la que ofrece el estándar PoE, no funcionará.
+- **IoT Gateway** convierte protocolos IoT propietarios a IP estándar para su transmisión por la red.
+
+---
+
+## Mini-resumen
+
+- **Cables de cobre:** Coaxial (blindado, legacy), par trenzado UTP/STP con conector **RJ-45** (Ethernet, 8 pines) o **RJ-11** (telefonía, 2-6 pines). Categorías de Cat 5e (1G) a Cat 8 (40G). Distancia máxima: 100 m. El trenzado y el blindaje combaten la interferencia electromagnética. **PoE** alimenta dispositivos IP (teléfonos, APs, cámaras) directamente por el cable.
+- **Fibra óptica:** Inmune a interferencias electromagnéticas. **Multimode** (LED, ~1,5 km, más barata) y **single-mode** (láser, ~80 km). Conectores: **LC** (moderno, pequeño), **SC** (cuadrado), **ST** (redondo, bayoneta), **FC** (rosca), **MPO** (multi-fibra). Interfaces **SFP** permiten módulos intercambiables en switches/routers.
+- **Wi-Fi (802.11):** Espectro no licenciado en 2,4/5/6 GHz. Estándares: 802.11n (Wi-Fi 4), ac (Wi-Fi 5), ax (Wi-Fi 6/6E), be (Wi-Fi 7). Usa **CSMA/CA** para compartir el medio. **Beam forming** dirige la señal. Principales interferencias: microondas, Bluetooth, paredes gruesas. **Celular** usa espectro licenciado con infraestructura dedicada (RAN + Mobile Core + Backhaul), autenticación SIM, y cobertura global.
+- **Endpoints:** Escritorios y servidores (cableados), portátiles y móviles (Wi-Fi/celular), dispositivos **IoT** (sensores con gateway para convertir a IP), teléfonos IP (VoIP, PoE). **Middleboxes**: firewalls, IDS, proxies, load balancers.
+- **Configuración y diagnóstico:** `ipconfig /all` (Windows), `ifconfig`/`ip addr` (macOS/Linux) para verificar IP/MAC/gateway/DNS. `ping` verifica conectividad (ICMP Echo). `traceroute`/`tracert` descubre la ruta (TTL incremental). `nslookup` verifica DNS. Para Wi-Fi: configurar **SSID** + contraseña + modo **WPA2/WPA3** (Personal=PSK o Enterprise=RADIUS).
+
+---
+
+✅ Dominio 3 completado. Listo para continuar con el Dominio 4.
