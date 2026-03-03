@@ -62,8 +62,8 @@ NAT permite que múltiples dispositivos con direcciones privadas compartan una o
 
 **Funcionamiento básico:**
 
-1. El host interno (ej: 192.168.1.10) envía un paquete hacia Internet con su IP privada como origen y un puerto efímero (ej: 49170).
-2. El dispositivo NAT (normalmente el router) **reemplaza** la dirección origen privada por su dirección pública (ej: 203.0.113.1) y **puede modificar el puerto** origen para distinguir entre hosts internos.
+1. El host interno (por ejemplo, 192.168.1.10) envía un paquete hacia Internet con su IP privada como origen y un puerto efímero (por ejemplo, 49170).
+2. El dispositivo NAT (normalmente el router) **reemplaza** la dirección origen privada por su dirección pública (por ejemplo, 203.0.113.1) y **puede modificar el puerto** origen para distinguir entre hosts internos.
 3. Cuando la respuesta llega, el NAT consulta su **tabla de traducciones** para saber a qué host interno y puerto reenviar el paquete.
 
 **NAT vs. PAT:** NAT traduce solo direcciones IP (una IP pública por host). **PAT (Port Address Translation)** traduce direcciones IP *y* puertos, permitiendo que múltiples hosts compartan una sola IP pública. En la práctica, la mayoría de implementaciones son PAT, pero el término "NAT" se usa para ambas.
@@ -103,7 +103,7 @@ La máscara de subred es una representación alternativa de la longitud del pref
 
 *\*Hosts utilizables = 2^(bits de host) − 2 (se restan la dirección de red y la de broadcast).*
 
-**Para encontrar el prefijo** a partir de una dirección y su máscara, se aplica una operación lógica **AND** bit a bit entre la dirección y la máscara. El resultado es la dirección de red.
+**Para encontrar el prefijo (ID de red)** a partir de una dirección y su máscara, se aplica una operación lógica **AND** bit a bit entre la dirección y la máscara. El resultado es la dirección de red.
 
 #### Dominio de broadcast
 
@@ -120,7 +120,7 @@ Un **broadcast domain** (dominio de broadcast) es el conjunto de todos los dispo
 
 #### Método rápido de cálculo: Skip Chart
 
-El libro presenta un método eficiente para calcular direcciones de red y broadcast sin convertir a binario. El concepto clave es el **"skip"** (salto): el intervalo en el que se repiten las subredes.
+A continuación, se presenta un método eficiente para calcular direcciones de red y broadcast sin convertir a binario. El concepto clave es el **"skip"** (salto): el intervalo en el que se repiten las subredes.
 
 **Tabla de skips para el cuarto octeto** (los más frecuentes en examen):
 
@@ -161,7 +161,7 @@ Dada **10.128.192.0/18**:
 
 ### 2.3 — Direcciones IPv6 y formatos de prefijo
 
-🔑 *Analogía:* Si IPv4 es un código postal de 5 dígitos que se agotó, IPv6 es como pasar a un código postal de 32 dígitos hexadecimales — tan grande que puede asignar una dirección única a cada grano de arena del planeta.
+🔑 *Analogía:* Si IPv4 es un código postal de 10 dígitos que se agotó, IPv6 es como pasar a un código postal de 32 dígitos hexadecimales — tan grande que puede asignar una dirección única a cada grano de arena del planeta.
 
 #### Formato de dirección IPv6
 
@@ -236,7 +236,7 @@ La primera y última dirección de cada subred IPv6 son, al igual que en IPv4, d
 
 - **Rangos privados IPv4:** Memorizar los tres rangos exactos (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16). Saber que NO son enrutables en Internet sin NAT.
 - **Clases IPv4:** Saber los rangos del primer octeto para Clase A (0-127), B (128-191) y C (192-223). Aunque CIDR reemplazó las clases, el examen pregunta por ellas.
-- **NAT/PAT:** NAT traduce direcciones; PAT traduce direcciones Y puertos. PAT permite que múltiples hosts compartan una sola IP pública. En la práctica, ambos términos se usan indistintamente.
+- **NAT/PAT:** NAT traduce direcciones; PAT traduce direcciones y puertos. PAT permite que múltiples hosts compartan una sola IP pública. En la práctica, ambos términos se usan indistintamente.
 - **Notación CIDR:** /24 = 255.255.255.0, /25 = 255.255.255.128, /26 = 255.255.255.192, /27 = 255.255.255.224. Poder convertir entre prefijo CIDR y máscara decimal.
 - **Cálculo de subredes:** Dados una IP y un prefijo, saber encontrar la dirección de red, el broadcast y el rango de hosts válidos usando el método del skip.
 - **Broadcast domain:** Todos los hosts con el mismo prefijo están en el mismo broadcast domain. Los routers separan broadcast domains; los switches no.
