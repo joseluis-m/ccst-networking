@@ -120,7 +120,7 @@ Un **broadcast domain** (dominio de broadcast) es el conjunto de todos los dispo
 
 #### Método rápido de cálculo: Skip Chart
 
-El libro presenta un método eficiente para calcular direcciones de red y broadcast sin convertir a binario. El concepto clave es el **"skip"** (salto): el intervalo en el que se repiten las subredes.
+A continuación, se presenta un método eficiente para calcular direcciones de red y broadcast sin convertir a binario. El concepto clave es el **"skip"** (salto): el intervalo en el que se repiten las subredes.
 
 **Tabla de skips para el cuarto octeto** (los más frecuentes en examen):
 
