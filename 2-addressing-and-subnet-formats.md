@@ -236,7 +236,7 @@ La primera y última dirección de cada subred IPv6 son, al igual que en IPv4, d
 
 - **Rangos privados IPv4:** Memorizar los tres rangos exactos (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16). Saber que NO son enrutables en Internet sin NAT.
 - **Clases IPv4:** Saber los rangos del primer octeto para Clase A (0-127), B (128-191) y C (192-223). Aunque CIDR reemplazó las clases, el examen pregunta por ellas.
-- **NAT/PAT:** NAT traduce direcciones; PAT traduce direcciones Y puertos. PAT permite que múltiples hosts compartan una sola IP pública. En la práctica, ambos términos se usan indistintamente.
+- **NAT/PAT:** NAT traduce direcciones; PAT traduce direcciones y puertos. PAT permite que múltiples hosts compartan una sola IP pública. En la práctica, ambos términos se usan indistintamente.
 - **Notación CIDR:** /24 = 255.255.255.0, /25 = 255.255.255.128, /26 = 255.255.255.192, /27 = 255.255.255.224. Poder convertir entre prefijo CIDR y máscara decimal.
 - **Cálculo de subredes:** Dados una IP y un prefijo, saber encontrar la dirección de red, el broadcast y el rango de hosts válidos usando el método del skip.
 - **Broadcast domain:** Todos los hosts con el mismo prefijo están en el mismo broadcast domain. Los routers separan broadcast domains; los switches no.
