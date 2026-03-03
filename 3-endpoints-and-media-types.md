@@ -56,7 +56,7 @@ La fibra transmite datos como pulsos de luz a través de un núcleo de vidrio. L
 | Atenuación/Dispersión | Mayor (la luz "rebota") | Menor |
 | Uso típico | Interior de edificios, campus | WAN, larga distancia, backbone |
 
-La fibra normalmente se usa en **pares** — un cable para transmitir y otro para recibir. **WDM (Wave Division Multiplexing)** permite transmitir múltiples señales por la misma fibra usando diferentes longitudes de onda (colores de luz).
+La fibra normalmente se usa en **pares** — un hilo para transmitir y otro para recibir. **WDM (Wave Division Multiplexing)** permite transmitir múltiples señales por el mismo hilo usando diferentes longitudes de onda (colores de luz).
 
 **Atenuación** = pérdida de potencia de la señal (se mide en decibelios, dB). **Dispersión** = la señal se "ensancha" al viajar; es peor en multimode.
 
@@ -70,7 +70,7 @@ La fibra normalmente se usa en **pares** — un cable para transmitir y otro par
 | **FC** (Ferrule Connector) | Redondo | Rosca (atornillado) | Entornos de vibración, telecomunicaciones |
 | **MPO** (Multi-fiber Push-On) | Rectangular grande | Push-pull, múltiples fibras | Cableado de alta densidad en data centers |
 
-Cada tipo puede ser **UPC** (corte recto a 90° — menor dispersión, menor reflexión) o **APC** (corte en ángulo de 8° — mayor reflexión pero absorbida por el cladding; necesario con láseres de alta potencia para evitar daños al transmisor).
+Cada tipo puede ser **UPC** (Ultra Physical Contact, corte recto a 90° — menor dispersión, menor reflexión) o **APC** (Angled Physical Contact, corte en ángulo de 8° — mayor reflexión pero absorbida por el cladding; necesario con láseres de alta potencia para evitar daños al transmisor).
 
 #### Interfaces pluggables (SFP)
 
@@ -128,7 +128,7 @@ Wi-Fi opera en **espectro no licenciado** — cualquiera puede instalar un AP si
 
 | Banda | Ventajas | Desventajas |
 |-------|----------|-------------|
-| **2,4 GHz** | Mayor alcance, mejor penetración de paredes | Muy congestionada (microondas, Bluetooth, monitores bebé). Solo 3 canales no solapados (1, 6, 11). |
+| **2,4 GHz** | Mayor alcance, mejor penetración de paredes | Muy congestionada (microondas, Bluetooth, monitores de bebé). Solo 3 canales no solapados (1, 6, 11). |
 | **5 GHz** | Más canales disponibles, menos interferencia | Menor alcance, peor penetración de paredes |
 | **6 GHz** | Canales aún más amplios, casi sin interferencia | Muy corto alcance, dispositivos nuevos necesarios |
 
