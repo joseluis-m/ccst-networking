@@ -16,7 +16,7 @@ Este dominio abarca el sistema de direccionamiento IP que hace posible la comuni
 
 Antes de CIDR (1993), las direcciones IPv4 se dividían en clases según el primer octeto. Aunque las clases ya no se usan para enrutamiento, siguen siendo relevantes para entender rangos y el examen las menciona explícitamente.
 
-| Clase | Rango primer octeto | Prefijo por defecto | Bits de red | Bits de host | Nº de redes | Nº de hosts por red |
+| Clase | Rango primer octeto | Prefijo por defecto | Bits de red | Bits de host | N.º de redes | N.º de hosts por red |
 |-------|---------------------|---------------------|-------------|--------------|-------------|---------------------|
 | **A** | 0 – 127 | /8 | 8 | 24 | 128 | ~16,7 millones |
 | **B** | 128 – 191 | /16 | 16 | 16 | 16.384 | ~65.534 |
