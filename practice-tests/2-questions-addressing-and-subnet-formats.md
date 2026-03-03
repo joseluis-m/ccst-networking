@@ -1,4 +1,3 @@
-# CCST Networking 100-150 — Preguntas de práctica
 ## Dominio 2: Addressing and Subnet Formats (30 preguntas)
 
 ---
@@ -83,7 +82,7 @@ D) Dirección privada de Clase A
 ✅ Correcta: C) Dirección link-local (APIPA)
 
 💡 Explicación: El rango 169.254.0.0/16 es link-local, también conocido como APIPA (Automatic Private IP Addressing). Se autoasigna cuando DHCP falla. Loopback es 127.0.0.0/8, multicast es 224.0.0.0/4, y las direcciones privadas de Clase A son 10.0.0.0/8.
-</respuesta>
+</details>
 
 ---
 
@@ -104,7 +103,7 @@ D) 255.255.255.255
 ✅ Correcta: B) 127.0.0.1
 
 💡 Explicación: 127.0.0.1 es la dirección de loopback más usada (todo el rango 127.0.0.0/8 es loopback). Los paquetes enviados a esta dirección no salen del host. 0.0.0.0 representa "esta red" (usado al arrancar), 169.254.x.x es link-local/APIPA, y 255.255.255.255 es broadcast limitado.
-</respuesta>
+</details>
 
 ---
 
@@ -466,6 +465,7 @@ D) IPv6 usa 4 octetos decimales separados por puntos, igual que IPv4
 ---
 
 **Pregunta 23. [Drag and Drop]**
+
 Arrastra cada clase de dirección IPv4 al rango de primer octeto que le corresponde.
 
 **Elementos a arrastrar:**
@@ -480,18 +480,25 @@ Arrastra cada clase de dirección IPv4 al rango de primer octeto que le correspo
 - 192 – 223
 - 224 – 239
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta:
+
 - Clase A → 0 – 127
+
 - Clase B → 128 – 191
+
 - Clase C → 192 – 223
+
 - Clase D → 224 – 239
+
 💡 Explicación: Las clases IPv4 se definen por el primer octeto. Clase A (0–127) tiene prefijo /8 por defecto con ~16,7M hosts por red. Clase B (128–191) tiene /16 con ~65K hosts. Clase C (192–223) tiene /24 con 254 hosts. Clase D (224–239) se reserva para multicast.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 24. [Drag and Drop]**
+
 Clasifica cada dirección IPv4 como Privada, Reservada o Pública.
 
 **Elementos a arrastrar:**
@@ -505,18 +512,25 @@ Clasifica cada dirección IPv4 como Privada, Reservada o Pública.
 - Pública
 - Reservada
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta:
+
 - 10.50.1.200 → Privada (rango 10.0.0.0/8)
+
 - 203.0.113.45 → Pública (no pertenece a ningún rango privado ni reservado conocido)
+
 - 127.0.0.1 → Reservada (loopback, rango 127.0.0.0/8)
+
 - 172.20.5.10 → Privada (rango 172.16.0.0/12, que va de 172.16.0.0 a 172.31.255.255)
+
 💡 Explicación: 10.x.x.x y 172.16–31.x.x son rangos privados. 127.x.x.x es loopback (reservado). 203.0.113.45 no pertenece a ningún rango privado o reservado, por lo que es pública.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 25. [Drag and Drop]**
+
 Arrastra cada prefijo CIDR a su máscara de subred equivalente.
 
 **Elementos a arrastrar:**
@@ -531,18 +545,25 @@ Arrastra cada prefijo CIDR a su máscara de subred equivalente.
 - 255.255.255.224
 - 255.255.255.252
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta:
+
 - /24 → 255.255.255.0 (8 bits de host)
+
 - /26 → 255.255.255.192 (6 bits de host)
+
 - /27 → 255.255.255.224 (5 bits de host)
+
 - /30 → 255.255.255.252 (2 bits de host)
+
 💡 Explicación: La máscara se construye con N bits a 1 (parte de red) seguidos de bits a 0 (parte de host). /24 = 24 bits a 1 → cuarto octeto todo 0s = .0. /26 = 26 bits a 1 → 2 bits a 1 en el cuarto octeto = 128+64 = .192. /27 = 3 bits a 1 = 128+64+32 = .224. /30 = 6 bits a 1 = 252.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 26. [Drag and Drop]**
+
 Arrastra cada tipo de dirección IPv6 a su prefijo correspondiente.
 
 **Elementos a arrastrar:**
@@ -557,18 +578,25 @@ Arrastra cada tipo de dirección IPv6 a su prefijo correspondiente.
 - fc00::/7 (empieza por fc o fd)
 - ff00::/8 (empieza por ff)
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta:
+
 - Global Unicast → 2000::/3 (empieza por 2 o 3)
+
 - Link-Local → fe80::/10
+
 - Unique Local (ULA) → fc00::/7 (empieza por fc o fd)
+
 - Multicast → ff00::/8 (empieza por ff)
+
 💡 Explicación: Global Unicast (2000::/3) equivale a IPs públicas IPv4. Link-Local (fe80::/10) se genera automáticamente y no sale del enlace. Unique Local (fc00::/7) equivale a las privadas IPv4. Multicast (ff00::/8) reemplaza al broadcast de IPv4, que no existe en IPv6.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 27. [Drag and Drop]**
+
 Arrastra cada longitud de prefijo IPv6 a su uso típico.
 
 **Elementos a arrastrar:**
@@ -581,18 +609,24 @@ Arrastra cada longitud de prefijo IPv6 a su uso típico.
 - Subred estándar asignada a un segmento de red (la más habitual para hosts)
 - Dirección de host individual o enlace punto a punto entre routers
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta:
+
 - /48 → Bloque típico asignado a una organización (contiene 65.536 subredes /64)
+
 - /64 → Subred estándar asignada a un segmento de red (la más habitual para hosts)
+
 - /128 → Dirección de host individual o enlace punto a punto entre routers
+
 💡 Explicación: La jerarquía típica en IPv6 es: los RIRs asignan /32 a ISPs, las organizaciones reciben /48, cada segmento de red usa un /64 (la longitud estándar que reciben los hosts), y /128 identifica un host individual o un enlace punto a punto.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 28. [Hotspot]**
-*Descripción del diagrama:* Se muestra una tabla con cuatro direcciones IP. Un administrador necesita identificar cuál pertenece a la subred **10.0.1.0/24**.
+
+Se muestra una tabla con cuatro direcciones IP. Un administrador necesita identificar cuál pertenece a la subred **10.0.1.0/24**.
 
 | Fila | Dirección IP |
 |------|-------------|
@@ -603,15 +637,18 @@ Arrastra cada longitud de prefijo IPv6 a su uso típico.
 
 **Señala la fila que contiene una dirección perteneciente a la subred 10.0.1.0/24.**
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: Fila B — 10.0.1.50
+
 💡 Explicación: Con prefijo /24, los primeros 3 octetos definen la red: 10.0.1.x. Solo la dirección 10.0.1.50 (fila B) comparte el prefijo 10.0.1 con la subred indicada. La fila A tiene prefijo 10.0.0, la C tiene 10.0.2, y la D tiene 10.1.1 — todas pertenecen a subredes /24 diferentes.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 29. [Hotspot]**
-*Descripción del diagrama:* Se muestra una tabla con datos de la subred a la que pertenece el host **192.168.1.200/26**. Se pide identificar la dirección de broadcast.
+
+Se muestra una tabla con datos de la subred a la que pertenece el host **192.168.1.200/26**. Se pide identificar la dirección de broadcast.
 
 | Fila | Dato de subred | Valor |
 |------|---------------|-------|
@@ -623,19 +660,25 @@ Arrastra cada longitud de prefijo IPv6 a su uso típico.
 **Señala la fila D e indica cuál es la dirección de broadcast de esta subred.**
 
 A) 192.168.1.224
+
 B) 192.168.1.240
+
 C) 192.168.1.255
+
 D) 192.168.1.256
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: C) 192.168.1.255
+
 💡 Explicación: Para /26, el skip es 64. La dirección de red es 192.168.1.192 (ya dada en la tabla). Broadcast = 192 + 64 − 1 = 255 → 192.168.1.255. El rango de hosts va de .193 a .254 (62 hosts utilizables). La opción D (256) es inválida como octeto, la A (.224) y la B (.240) no corresponden al cálculo correcto.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 30. [Hotspot]**
-*Descripción del diagrama:* Se muestra una tabla con cuatro direcciones IPv6. Se pide identificar cuál es una dirección Unique Local (equivalente funcional de las privadas IPv4).
+
+Se muestra una tabla con cuatro direcciones IPv6. Se pide identificar cuál es una dirección Unique Local (equivalente funcional de las privadas IPv4).
 
 | Fila | Dirección IPv6 |
 |------|---------------|
@@ -646,10 +689,12 @@ D) 192.168.1.256
 
 **Señala la fila que contiene una dirección Unique Local (ULA).**
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: Fila C — fd00:abcd:1234::1
+
 💡 Explicación: Las direcciones Unique Local usan el prefijo fc00::/7, lo que significa que empiezan por fc o fd. La dirección fd00:abcd:1234::1 (fila C) comienza por fd, así que es ULA. La fila A (2001:) es Global Unicast, la fila B (fe80::) es Link-Local, y la fila D (ff02::) es Multicast.
-</respuesta>
+</details>
 
 ---
 
