@@ -62,8 +62,8 @@ NAT permite que múltiples dispositivos con direcciones privadas compartan una o
 
 **Funcionamiento básico:**
 
-1. El host interno (por ejemplo, 192.168.1.10) envía un paquete hacia Internet con su IP privada como origen y un puerto efímero (ej: 49170).
-2. El dispositivo NAT (normalmente el router) **reemplaza** la dirección origen privada por su dirección pública (ej: 203.0.113.1) y **puede modificar el puerto** origen para distinguir entre hosts internos.
+1. El host interno (por ejemplo, 192.168.1.10) envía un paquete hacia Internet con su IP privada como origen y un puerto efímero (por ejemplo, 49170).
+2. El dispositivo NAT (normalmente el router) **reemplaza** la dirección origen privada por su dirección pública (por ejemplo, 203.0.113.1) y **puede modificar el puerto** origen para distinguir entre hosts internos.
 3. Cuando la respuesta llega, el NAT consulta su **tabla de traducciones** para saber a qué host interno y puerto reenviar el paquete.
 
 **NAT vs. PAT:** NAT traduce solo direcciones IP (una IP pública por host). **PAT (Port Address Translation)** traduce direcciones IP *y* puertos, permitiendo que múltiples hosts compartan una sola IP pública. En la práctica, la mayoría de implementaciones son PAT, pero el término "NAT" se usa para ambas.
