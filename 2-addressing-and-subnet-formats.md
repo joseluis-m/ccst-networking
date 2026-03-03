@@ -161,7 +161,7 @@ Dada **10.128.192.0/18**:
 
 ### 2.3 — Direcciones IPv6 y formatos de prefijo
 
-🔑 *Analogía:* Si IPv4 es un código postal de 5 dígitos que se agotó, IPv6 es como pasar a un código postal de 32 dígitos hexadecimales — tan grande que puede asignar una dirección única a cada grano de arena del planeta.
+🔑 *Analogía:* Si IPv4 es un código postal de 10 dígitos que se agotó, IPv6 es como pasar a un código postal de 32 dígitos hexadecimales — tan grande que puede asignar una dirección única a cada grano de arena del planeta.
 
 #### Formato de dirección IPv6
 
