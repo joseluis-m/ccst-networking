@@ -103,7 +103,7 @@ La máscara de subred es una representación alternativa de la longitud del pref
 
 *\*Hosts utilizables = 2^(bits de host) − 2 (se restan la dirección de red y la de broadcast).*
 
-**Para encontrar el prefijo** a partir de una dirección y su máscara, se aplica una operación lógica **AND** bit a bit entre la dirección y la máscara. El resultado es la dirección de red.
+**Para encontrar el ID de red** a partir de una dirección y su máscara, se aplica una operación lógica **AND** bit a bit entre la dirección y la máscara. El resultado es la dirección de red.
 
 #### Dominio de broadcast
 
