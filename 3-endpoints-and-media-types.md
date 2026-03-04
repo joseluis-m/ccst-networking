@@ -132,7 +132,7 @@ Wi-Fi opera en **espectro no licenciado** — cualquiera puede instalar un AP si
 | **5 GHz** | Más canales disponibles, menos interferencia | Menor alcance, peor penetración de paredes |
 | **6 GHz** | Canales aún más amplios, casi sin interferencia | Muy corto alcance, dispositivos nuevos necesarios |
 
-**CSMA/CA (Collision Avoidance):** Wi-Fi usa un sistema de acceso al medio diferente al Ethernet cableado (CSMA/CD). En lugar de detectar colisiones después de que ocurran, Wi-Fi las **evita** usando señalización Request to Send / Clear to Send antes de transmitir. Todos los dispositivos conectados a un mismo AP y canal comparten el ancho de banda.
+**CSMA/CA (Collision Avoidance):** Wi-Fi usa un sistema de acceso al medio diferente al Ethernet cableado (CSMA/CD). En lugar de detectar colisiones después de que ocurran, Wi-Fi las **evita** usando señalización Request to Send/Clear to Send (RTS/CTS) antes de transmitir. Todos los dispositivos conectados a un mismo AP y canal comparten el ancho de banda.
 
 **Beam forming:** Técnica que usa múltiples antenas (phased array) para dirigir la señal hacia un dispositivo concreto en lugar de emitir en todas direcciones, mejorando alcance y rendimiento.
 
