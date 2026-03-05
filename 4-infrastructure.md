@@ -2,7 +2,7 @@
 
 ## Resumen ejecutivo
 
-Este dominio evalúa tu capacidad para trabajar con el hardware físico de red: identificar dispositivos, puertos e indicadores luminosos; interpretar diagramas de red para cablear correctamente; y comprender cómo los switches y routers mueven paquetes a través de la infraestructura. Es el dominio más práctico y "manos en el hierro" del examen, con preguntas que combinan identificación visual de hardware con conceptos fundamentales de conmutación y enrutamiento. Presta especial atención a las diferencias entre switches Layer 2 y routers/Layer 3 switches, y al proceso de decisión de reenvío basado en tablas MAC vs. tablas de enrutamiento IP.
+Este dominio evalúa tu capacidad para trabajar con el hardware físico de red: identificar dispositivos, puertos e indicadores luminosos; interpretar diagramas de red para cablear correctamente; y comprender cómo los switches y routers mueven paquetes a través de la infraestructura. Es el dominio más práctico y "manos en el hierro" del examen, con preguntas que combinan identificación visual de hardware con conceptos fundamentales de conmutación y enrutamiento. Presta especial atención a las diferencias entre switches Layer 2 y routers/switches Layer 3, y al proceso de decisión de reenvío basado en tablas MAC vs. tablas de enrutamiento IP.
 
 ---
 
@@ -24,9 +24,9 @@ Casi todos los puertos de un dispositivo de red tienen un LED asociado. Estos in
 | **Rojo fijo (solid red)** | El puerto ha sufrido un fallo grave (malfunction) |
 | **Apagado (off)** | Sin enlace, puerto deshabilitado o cable desconectado |
 
-**Advertencia importante para el examen:** Estos significados son los **convencionales**, pero **no son universales** en todos los dispositivos. Cisco advierte explícitamente que los colores y estados pueden significar cosas diferentes según el modelo de equipo. Ejemplo del libro: en el Cisco 1120 Connected Grid Router, un LED verde parpadeante en un puerto pluggable indica que la interfaz se puede extraer de forma segura — no que esté transmitiendo datos. En algunos data centers de gran escala, los operadores programan los LEDs para usar azul en lugar de verde y solo luces fijas, porque el volumen de luces parpadeantes dificulta encontrar fallos.
+**Advertencia importante para el examen:** Estos significados son los **convencionales**, pero **no son universales** en todos los dispositivos. Cisco advierte explícitamente que los colores y estados pueden significar cosas diferentes según el modelo de equipo. Por ejemplo, en el Cisco 1120 Connected Grid Router, un LED verde parpadeante en un puerto pluggable indica que la interfaz se puede extraer de forma segura — no que esté transmitiendo datos. En algunos data centers de gran escala, los operadores programan los LEDs para usar azul en lugar de verde y solo luces fijas, porque el volumen de luces parpadeantes dificulta encontrar fallos.
 
-**Regla de oro:** Si no estás seguro, consulta siempre el manual del equipo específico. Pero para el examen CCST, los significados estándar de la tabla anterior son los que se evaluarán.
+**Regla de oro:** Si no estás seguro, consulta siempre el manual del equipo específico. Pero para el examen, los significados estándar de la tabla anterior son los que se evaluarán.
 
 **LEDs adicionales comunes en dispositivos:**
 
@@ -45,7 +45,7 @@ Además de los LEDs por puerto, los dispositivos suelen tener indicadores de sis
 | **Muestra** | Ubicación real de equipos, recorrido de cables, racks, patch panels | Flujo de paquetes, conexiones lógicas entre dispositivos |
 | **Incluye** | Longitudes de cable, posición en rack, tipos de conector | Direcciones IP, protocolos de enrutamiento, políticas de filtrado |
 | **No incluye normalmente** | Direcciones IP ni protocolos | Patch panels, recorrido físico de cables ni ubicaciones en rack |
-| **Se usa para** | Planificar cableado, circuit grooming (evitar cables redundantes en el mismo conducto), estimar longitudes | Seguir el flujo del tráfico, diagnosticar problemas lógicos, entender la topología |
+| **Se usa para** | Planificar cableado, evitar cables redundantes en el mismo conducto, estimar longitudes | Seguir el flujo del tráfico, diagnosticar problemas lógicos, entender la topología |
 
 **Reglas mnemotécnicas:**
 
@@ -62,7 +62,7 @@ La altura de los equipos se mide en **rack units (RU)**: 1 RU = 1,75 pulgadas = 
 
 Los **patch panels** se utilizan cuando el cableado cambia frecuentemente (por ejemplo, conectar equipos a rosetas de pared). Permiten reconectar sin manipular los cables permanentes de la instalación. En la práctica, se interponen entre el cableado estructurado del edificio y los puertos de switches/routers.
 
-**Buenas prácticas de cableado del libro:**
+**Buenas prácticas de cableado:**
 
 - Usar organizadores horizontales tipo D-ring para mantener cables en filas ordenadas.
 - Los cables de cobre **nunca deben tener bucles** (actúan como antenas y generan interferencia); se deben cortar a la longitud correcta.
