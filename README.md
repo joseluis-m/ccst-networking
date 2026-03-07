@@ -23,7 +23,7 @@ El temario se divide en los 6 dominios oficiales del examen:
 ## Formato de los Módulos
 Cada sección sigue una estructura técnica rigurosa:
 * **Resumen ejecutivo:** Contexto del dominio.
-* **Conceptos clave:** Explicaciones técnicas acompañadas de analogías y tablas comparativas (Puertos, protocolos, estándares).
+* **Conceptos clave:** Explicaciones técnicas acompañadas de analogías y tablas comparativas (puertos, protocolos, estándares).
 * **Puntos críticos:** Selección de conceptos con alta probabilidad de aparición en el examen.
 * **Sintaxis CLI:** Comandos de verificación (`show`) y configuración extraídos directamente del manual oficial.
 
