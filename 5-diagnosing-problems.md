@@ -24,15 +24,15 @@ Existen cinco tipos fundamentales de documentación de red. Sin ella, no se pued
 | **Failure reports** | Informes de cada incidencia: síntomas, causa raíz, solución temporal, solución permanente. Son una mina de información para troubleshooting futuro. Deben almacenarse en un **sistema de ticketing** bien diseñado. |
 | **Hardware y software** | Copias locales de manuales del fabricante y documentación crítica. Si la red cae, no podrás acceder a recursos en Internet para repararla. |
 
-**Regla de oro del libro:** *Si tendrías que explicar algo al soporte técnico del fabricante a las 2 de la madrugada, documéntalo.*
+**Regla de oro:** *Si tendrías que explicar algo al soporte técnico del fabricante a las 2 de la madrugada, documéntalo.*
 
 #### Gestión del cambio (Change Management)
 
 Todo cambio en la red debe seguir un proceso formal que incluya: procedimientos de prueba previos, documentación del cambio (qué se resuelve, cómo, por qué), y un **backout plan** (instrucciones para restaurar rápidamente el estado previo al cambio si algo falla). Los cambios se realizan durante **change windows** (ventanas de cambio), que son cortes de servicio planificados para un módulo específico de la red.
 
-#### Triage y priorización
+#### Triaje y priorización
 
-**Triage** es el proceso de determinar la importancia relativa de cada fallo y en qué orden deben trabajarse. No todos los fallos son iguales: una red completamente caída para 10.000 dispositivos exige movilizar a todo el equipo inmediatamente; 200 hosts con rendimiento degradado pueden esperar un análisis en un par de días. El triage es vital para organizar el trabajo diario de un **NOC (Network Operations Center)**.
+**Triaje** es el proceso de determinar la importancia relativa de cada fallo y en qué orden deben trabajarse. No todos los fallos son iguales: una red completamente caída para 10.000 dispositivos exige movilizar a todo el equipo inmediatamente; 200 hosts con rendimiento degradado pueden esperar un análisis en un par de días. El triaje es vital para organizar el trabajo diario de un **NOC (Network Operations Center)**.
 
 #### Terminología de fallos
 
@@ -42,14 +42,14 @@ Todo cambio en la red debe seguir un proceso formal que incluya: procedimientos 
 | **MTBM** (Mean Time Between Mistakes) | Tiempo medio entre errores humanos. Un MTBM bajo indica un sistema frágil o excesivamente complejo. |
 | **Dwell time** | Tiempo que el fallo existe antes de ser detectado. Objetivo: minimizarlo. |
 | **MTTR** (Mean Time To Repair) | Tiempo total de indisponibilidad. Puede incluir o no el dwell time (depende de la política local). |
-| **MTTI** (Mean Time To Innocence) | Tiempo para demostrar que el problema no es de la red. Consejo del libro: no te centres en esto; toma ownership del problema y ayuda aunque no sea "tu culpa". |
+| **MTTI** (Mean Time To Innocence) | Tiempo para demostrar que el problema no es de la red. Consejo: no te centres en esto; toma ownership del problema y ayuda aunque no sea "tu culpa". |
 
 #### Resiliencia y fragilidad
 
 - **Sistemas frágiles** fallan fácilmente ante presiones ambientales (fallo de enlace, error humano, fallo hardware/software).
 - **Sistemas resilientes** sobreviven a esas presiones gracias a la **redundancia** (caminos paralelos que eliminan **single points of failure**).
 - Añadir un segundo camino aumenta la resiliencia ~50%. Un tercer camino añade ~25% adicional. Más allá de 2-3 caminos, la complejidad añadida puede empeorar la reacción ante fallos.
-- **Shared fate** (destino compartido): cuando dos recursos "redundantes" comparten un componente crítico oculto (ej: ambos servidores conectados a la misma fuente de alimentación, o dos fibras del mismo cable). Es casi imposible eliminarlo completamente, pero hay que ser consciente de ello.
+- **Shared fate** (destino compartido): cuando dos recursos "redundantes" comparten un componente crítico oculto (por ejemplo, ambos servidores conectados a la misma fuente de alimentación, o dos fibras del mismo cable). Es casi imposible eliminarlo completamente, pero hay que ser consciente de ello.
 
 #### El método half-split
 
@@ -65,16 +65,16 @@ Es la técnica de troubleshooting más efectiva, desarrollada a partir de décad
 2. Después, revisa los **puntos donde suelen ocurrir fallos**.
 3. Si no se resuelve rápidamente, aplica el **half-split formal**: selecciona origen y destino, elige un punto intermedio, mide, y divide el espacio del problema en mitades sucesivas.
 
-**Ejemplo práctico del libro:** Host *A* no puede alcanzar el servidor *X* a través de Internet. Se empieza en el router *F* (punto medio), se hace ping a *X*. Si funciona, el problema está entre *A* y *F*. Se sigue dividiendo: access point *B*, switch *C*, host *D* como testigos. Al final se descubre que *A* puede alcanzar al router *F* pero no al firewall *G* → se orienta a la causa: ¿filtro de paquetes o default gateway incorrecto? Se valida con un ping extendido desde *F* usando la IP de su interfaz con *G*. Resultado: **default gateway de *A* mal configurado**.
+**Ejemplo práctico:** Host *A* no puede alcanzar el servidor *X* a través de Internet. Se empieza en el router *F* (punto medio), se hace ping a *X*. Si funciona, el problema está entre *A* y *F*. Se sigue dividiendo: access point *B*, switch *C*, host *D* como testigos. Al final se descubre que *A* puede alcanzar al router *F* pero no al firewall *G* → se orienta a la causa: ¿filtro de paquetes o default gateway incorrecto? Se valida con un ping extendido desde *F* usando la IP de su interfaz con *G*. Resultado: **default gateway de *A* mal configurado**.
 
 #### Tipos de corrección
 
 | Tipo | Descripción |
 |------|-------------|
-| **Permanent fix** | Devuelve la red al estado pre-fallo, O está bien documentada, reduce la deuda técnica y encaja en la arquitectura global |
+| **Permanent fix** | Devuelve la red al estado pre-fallo, está bien documentada, reduce la deuda técnica y encaja en la arquitectura global |
 | **Temporary fix** | Solución provisional hasta que se diseñe, pruebe y despliegue una solución mejor. Aumenta la deuda técnica. |
 
-**Consejo del libro:** *No hay nada más permanente que una solución temporal.* No permitas que los fixes temporales se acumulen.
+**Consejo:** *No hay nada más permanente que una solución temporal.* No permitas que los fixes temporales se acumulen.
 
 #### Post-mortem
 
@@ -113,7 +113,7 @@ Cuando los problemas no pueden diagnosticarse solo con ping o traceroute (por ej
 Wireshark utiliza el formato **`.pcap`** para guardar capturas de paquetes. Este formato es estándar en la industria y es compatible con la mayoría de herramientas de captura y análisis. Puedes:
 
 - **Guardar** una captura para examinarla después o como registro de un fallo.
-- **Abrir** archivos .pcap existentes, incluyendo colecciones públicas de capturas (como las de netresec.com) que contienen ejemplos de operación normal de protocolos, ataques de red, malware y ejercicios de penetración testing.
+- **Abrir** archivos .pcap existentes, incluyendo colecciones públicas de capturas (como las de netresec.com) que contienen ejemplos de operación normal de protocolos, ataques de red, malware y ejercicios de pentesting.
 
 ---
 
@@ -163,9 +163,9 @@ Consulta un servidor DNS para obtener la dirección IP asociada a un nombre de d
 
 Los cortafuegos y filtros de paquetes pueden alterar significativamente los resultados de las herramientas de diagnóstico:
 
-- **Asterisco (\*) en traceroute:** Indica que el dispositivo en ese salto está configurado para no enviar respuestas ICMP TTL Expired, O que algún dispositivo intermedio filtra/bloquea esas respuestas ICMP. No significa necesariamente que el camino esté roto.
+- **Asterisco (\*) en traceroute:** Indica que el dispositivo en ese salto está configurado para no enviar respuestas ICMP TTL Expired, o que algún dispositivo intermedio filtra/bloquea esas respuestas ICMP. No significa necesariamente que el camino esté roto.
 - **Ping fallido no siempre = destino inalcanzable:** Muchos firewalls bloquean ICMP echo request/reply como medida de seguridad. Un ping fallido puede deberse al firewall, no a un problema de conectividad.
-- **Filtros de paquetes en routers:** Las access lists pueden bloquear tráfico selectivamente por origen, destino o protocolo. En el caso práctico del libro, al diagnosticar un fallo de conectividad, se consideran tanto los filtros de paquetes como un default gateway incorrecto como posibles causas.
+- **Filtros de paquetes en routers:** Las listas de control de acceso (ACL) pueden bloquear tráfico selectivamente por origen, destino o protocolo. Al diagnosticar un fallo de conectividad, se pueden considerar tanto los filtros de paquetes como un default gateway incorrecto como posibles causas.
 
 **Descubrimiento de IP pública:** Dado que NAT traduce la IP privada a una pública, para conocer tu IP pública debes usar servicios web externos (Google "what is my IP", `curl http://tnx.nl/ip`, checkip.amazonaws.com).
 
@@ -226,9 +226,9 @@ Cuando la escala o complejidad crece, los operadores pasan de gestión manual a 
 
 Los fabricantes (incluido Cisco con **Meraki**) ofrecen gestión de red basada en la nube. Los dispositivos (APs, routers, switches) envían su estado y telemetría a la plataforma cloud del fabricante. La plataforma funciona como un NMS pero hospedado externamente. El tráfico de datos de los usuarios **no pasa por la nube del fabricante** — solo metadatos y estado de los dispositivos.
 
-#### Triage y sistema de trabajo (Ticketing)
+#### triaje y sistema de trabajo (Ticketing)
 
-Todo equipo de operaciones necesita un sistema para que los usuarios reporten problemas, se haga **triage** (evaluar importancia y dificultad de reparación), y se priorice y gestione la carga de trabajo. Los failure reports alimentan este sistema de ticketing.
+Todo equipo de operaciones necesita un sistema para que los usuarios reporten problemas, se haga **triaje** (evaluar importancia y dificultad de reparación), y se priorice y gestione la carga de trabajo. Los failure reports alimentan este sistema de ticketing.
 
 ---
 
@@ -308,7 +308,7 @@ Protocolo propietario de Cisco, ligero, que descubre automáticamente dispositiv
 ## 🎯 Puntos críticos para el examen
 
 - **Documentación:** Los cinco tipos son diagramas, descripciones, baselines, failure reports, y hardware/software. Las baselines son esenciales porque sin ellas no puedes saber si algo funciona "peor de lo normal".
-- **Triage** = determinar importancia del fallo y en qué orden trabajar. No confundir con diagnosticar.
+- **triaje** = determinar importancia del fallo y en qué orden trabajar. No confundir con diagnosticar.
 - **Half-split:** Dos fases → **medir** (orientar + observar) y **dividir** (moverse en la dirección correcta). Se empieza en el punto medio entre origen y destino y se reduce el espacio del problema a la mitad en cada iteración.
 - **Backout plan** = instrucciones para restaurar el estado previo al cambio si algo sale mal. Imprescindible en todo proceso de change management.
 - **Post-mortem:** Centrarse en arreglar el problema, no en buscar culpables. Documentar causa raíz, dwell time, y cómo prevenir recurrencia.
@@ -336,7 +336,7 @@ Protocolo propietario de Cisco, ligero, que descubre automáticamente dispositiv
 
 ## Mini-resumen
 
-- **Metodología y help desk:** Documentar todo (diagramas, descripciones, baselines, failure reports, manuales locales). Usar **triage** para priorizar fallos en el NOC. Seguir **change management** con backout plan y change windows. Aplicar el método **half-split**: empezar en el punto medio entre origen y destino, medir, dividir, repetir. Tras resolver, hacer **post-mortem** (sin culpables). Cuidado con los **false positives** y con las soluciones temporales que se vuelven permanentes.
+- **Metodología y help desk:** Documentar todo (diagramas, descripciones, baselines, failure reports, manuales locales). Usar **triaje** para priorizar fallos en el NOC. Seguir **change management** con backout plan y change windows. Aplicar el método **half-split**: empezar en el punto medio entre origen y destino, medir, dividir, repetir. Tras resolver, hacer **post-mortem** (sin culpables). Cuidado con los **false positives** y con las soluciones temporales que se vuelven permanentes.
 - **Wireshark y .pcap:** Herramienta open-source de captura y análisis de paquetes. Tres paneles (lista, decodificación, hex dump). Filtros de captura para reducir volumen. Se guardan y abren archivos en formato **`.pcap`** (estándar). Permite diagnosticar problemas invisibles para ping (retransmisiones TCP, paquetes descartados, handshakes fallidos).
 - **Comandos de diagnóstico:** `ping` verifica conectividad (ICMP echo). Estrategia escalonada: gateway → IP remota → dominio. `traceroute`/`tracert` descubre la ruta salto a salto (TTL incremental). `nslookup` resuelve DNS. `ipconfig`/`ifconfig`/`ip addr` muestran la configuración IP local. Los **firewalls pueden bloquear ICMP**, causando falsos negativos en ping y asteriscos en traceroute.
 - **Acceso a dispositivos:** **Console** (acceso directo, "plan B"), **SSH** (remoto cifrado, siempre preferido), **Telnet** (remoto sin cifrar, solo provisional), **RDP** (escritorio remoto a jump host), **VPN** (túnel cifrado para acceso desde fuera). **Terminal emulators** (PuTTY, etc.) necesarios para console y SSH. **NMS** centraliza monitorización (SNMP, NETCONF/YANG, CLI/scripts, gRPC). **Meraki** = gestión cloud. Gestión **in-band** (misma red) vs. **out-of-band** (red dedicada de gestión). Tres reglas: usar SSH, controlar acceso físico al console, nunca permitir gestión directa desde Internet.
