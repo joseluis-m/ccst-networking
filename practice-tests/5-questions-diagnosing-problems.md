@@ -4,17 +4,23 @@
 ---
 
 **Pregunta 1. [Multiple Choice — Single Answer]**
+
 En la metodología de troubleshooting half-split, ¿cuál es el primer paso recomendado antes de aplicar la técnica formal de dividir el espacio del problema?
 
 A) Reinstalar el firmware de todos los routers
+
 B) Comprobar el cambio más reciente realizado en la red
+
 C) Reemplazar todos los cables de la ruta afectada
+
 D) Abrir un caso con el fabricante del equipo
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: B) Comprobar el cambio más reciente realizado en la red
+
 💡 Explicación: La estrategia inicial recomendada es primero comprobar el cambio más reciente (la mayoría de fallos se deben a cambios), después revisar los puntos donde suelen ocurrir fallos, y solo entonces aplicar el half-split formal si no se resuelve rápidamente.
-</respuesta>
+</details>
 
 ---
 
@@ -22,7 +28,7 @@ D) Abrir un caso con el fabricante del equipo
 ¿Qué formato de archivo utiliza Wireshark como estándar de la industria para guardar y compartir capturas de paquetes?
 
 A) .xlsx
-B) .pcap / .pcapng
+B) .pcap/.pcapng
 C) .csv
 D) .log
 
