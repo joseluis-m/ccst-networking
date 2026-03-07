@@ -183,7 +183,7 @@ Un **routing loop** ocurre cuando los paquetes circulan indefinidamente entre ro
 - **ICMP Redirect:** Cuando un router recibe un paquete que debe reenviar por la misma interfaz por la que lo recibió, puede enviar un mensaje ICMP redirect al host de origen indicándole un mejor default gateway para ese destino.
 - **DHCP Relay:** Los routers no reenvían broadcasts, por lo que un host en un segmento sin servidor DHCP no puede obtener dirección. La solución: configurar el router como **DHCP relay**, que recibe el broadcast DHCP y lo reenvía como unicast al servidor DHCP en otro segmento.
 
-#### Layer 2 switch vs. Layer 3 switch vs. Router
+#### Switch Layer 2 vs. Switch Layer 3 vs. Router
 
 | Característica | **Switch Layer 2** | **Router / Switch Layer 3** |
 |----------------|--------------------|-----------------------------|
@@ -195,7 +195,7 @@ Un **routing loop** ocurre cuando los paquetes circulan indefinidamente entre ro
 | Velocidad histórica | Hardware (muy rápido) | Software (lento originalmente) → Hardware actual (igual de rápido) |
 | Loop prevention | **STP (Spanning Tree Protocol)** | **TTL** + algoritmos de enrutamiento sin loops |
 
-**¿Qué es un Layer 3 switch?** Un dispositivo con hardware de conmutación de alta velocidad (como un switch) pero que toma decisiones basadas en direcciones IP (como un router). El término surgió como compromiso comercial cuando se crearon los primeros routers con reenvío por hardware. Hoy en día, el término "switch" puede referirse tanto a un Layer 2 como a un Layer 3, por lo que siempre hay que clarificar cuál de los dos es.
+**¿Qué es un switch Layer 3?** Un dispositivo con hardware de conmutación de alta velocidad (como un switch) pero que toma decisiones basadas en direcciones IP (como un router). El término surgió como compromiso comercial cuando se crearon los primeros routers con reenvío por hardware. Hoy en día, el término "switch" puede referirse tanto a un Layer 2 como a un Layer 3, por lo que siempre hay que clarificar cuál de los dos es.
 
 ---
 
@@ -212,7 +212,7 @@ Es la tabla central que un switch usa para decidir por qué puerto reenviar cada
 1. El switch recibe una trama por el **puerto 1** con **MAC origen = A**.
 2. El switch registra en su tabla: "MAC A → Puerto 1".
 3. El switch examina la **MAC destino** de la trama.
-4. Si la MAC destino **está en la tabla** → reenvía solo por el puerto correspondiente (**filtrado**).
+4. Si la MAC destino **está en la tabla** → reenvía solo por el puerto correspondiente (**forwarding**).
 5. Si la MAC destino **no está en la tabla** → reenvía por **todos los puertos activos** excepto el de origen (**flooding**).
 6. Si la MAC destino es **broadcast** (ff:ff:ff:ff:ff:ff) o **multicast** → reenvía por todos los puertos activos.
 
@@ -279,7 +279,7 @@ Una VLAN es un **segmento de red de capa 2 definido lógicamente**, no físicame
 - **Switch Layer 2:** Reenvía por MAC, no separa broadcast domains (salvo VLANs), no tiene TTL.  **Router / Layer 3 switch:** Reenvía por IP, separa broadcast domains, decrementa TTL.
 - **Bridge learning:** El switch aprende las MAC **de origen** de las tramas que recibe y las asocia al puerto de entrada. Nunca aprende de las MAC de destino.
 - **STP** previene loops en redes conmutadas (Layer 2). **TTL** previene loops en redes enrutadas (Layer 3). No confundirlos.
-- **VLANs:** Cada VLAN = un broadcast domain separado. Comunicación entre VLANs = requiere router/L3 switch. **VLAN 1** = VLAN por defecto en Cisco.
+- **VLANs:** Cada VLAN = un broadcast domain separado. Comunicación entre VLANs = requiere router/switch L3. **VLAN 1** = VLAN por defecto en Cisco.
 - **Switch IP:** Se configura en **interface VLAN 1**, no en puertos individuales. Los puertos del switch no tienen IP.
 - **MAC filtering en switch:** Si la MAC destino se alcanza por el mismo puerto que la MAC origen, el switch **no reenvía** la trama (ya llegó).
 - **1 RU = 1,75 pulgadas = 44,45 mm.** Los equipos de red se miden en RUs para planificar el espacio en rack.
@@ -292,5 +292,5 @@ Una VLAN es un **segmento de red de capa 2 definido lógicamente**, no físicame
 - **Diagramas y cableado:** Los diagramas **físicos** muestran recorrido de cables, racks y patch panels; los **lógicos** muestran IPs, protocolos y flujo de paquetes. En el rack (medido en **RU** de 44,45 mm), se organizan cables con fingerboards, lacing bars y cable trays aéreos. Los patch panels facilitan reconexiones frecuentes. Fuentes de alimentación y fan trays suelen ser redundantes y reemplazables.
 - **Puertos:** **Console** (CLI directo, configuración inicial), **management** (red OOB de gestión), **Ethernet/RJ-45** (datos, con posible PoE), **SFP/pluggable** (modulares para fibra o cobre según necesidad), **USB** (console alternativo, almacenamiento). Numeración: Tipo + Slot/Subslot/Puerto (GE0/0/1). Combo ports: solo un modo activo (RJ-45 o SFP).
 - **Routing:** El host envía paquetes para redes remotas al **default gateway** (MAC router + IP destino final). El router consulta su **tabla de enrutamiento (RIB)** y aplica **longest prefix match** para elegir la mejor ruta. Fuentes de rutas: conectadas, estáticas, dinámicas (RIP, OSPF, EIGRP, IS-IS, BGP). En cada salto, la **MAC cambia** pero la **IP se mantiene**. El **TTL** se decrementa para evitar routing loops. **ICMP redirect** optimiza el gateway; **DHCP relay** permite DHCP entre segmentos.
-- **Switching:** El switch aprende direcciones MAC del tráfico de origen (**bridge learning**) y construye una **MAC address table**. Si conoce el puerto destino → reenvía solo ahí (**filtrado**). Si no → flooding por todos los puertos. **STP** previene loops bloqueando puertos redundantes. **VLANs** crean broadcast domains lógicos separados; cada VLAN necesita un router para comunicarse con otra. **VLAN 1** es la VLAN por defecto donde se configura la IP de gestión del switch.
-- **Layer 2 vs. Layer 3:** Switches L2 conmutan por MAC (sin TTL, sin separar broadcasts salvo VLANs, STP contra loops). Routers y switches L3 enrutan por IP (con TTL, separan broadcasts, protocolos de enrutamiento contra loops). El término "Layer 3 switch" = router con hardware de conmutación de alta velocidad.
+- **Switching:** El switch aprende direcciones MAC del tráfico de origen (**bridge learning**) y construye una **MAC address table**. Si conoce el puerto destino → reenvía solo ahí (**forwarding**). Si no → flooding por todos los puertos. **STP** previene loops bloqueando puertos redundantes. **VLANs** crean broadcast domains lógicos separados; cada VLAN necesita un router para comunicarse con otra. **VLAN 1** es la VLAN por defecto donde se configura la IP de gestión del switch.
+- **Layer 2 vs. Layer 3:** Switches L2 conmutan por MAC (sin TTL, sin separar broadcasts salvo VLANs, STP contra loops). Routers y switches L3 enrutan por IP (con TTL, separan broadcasts, protocolos de enrutamiento contra loops). El término "switch Layer 3" = router con hardware de conmutación de alta velocidad.
