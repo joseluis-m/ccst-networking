@@ -108,12 +108,12 @@ Cuando los problemas no pueden diagnosticarse solo con ping o traceroute (por ej
 - **Filtros de captura:** Permiten capturar solo un subconjunto del tráfico (ej: solo HTTP en puerto TCP 80). Esencial para reducir el volumen de datos.
 - **Análisis de flujos:** Con práctica, se pueden trazar flujos completos de paquetes y detectar errores como paquetes descartados, retransmisiones TCP, ACKs duplicados.
 
-#### Archivos .pcap
+#### Archivos .pcap y .pcapng
 
-Wireshark utiliza el formato **`.pcap`** para guardar capturas de paquetes. Este formato es estándar en la industria y es compatible con la mayoría de herramientas de captura y análisis. Puedes:
+Wireshark utiliza el formato **`.pcap`** o **`.pcapng`** para guardar capturas de paquetes. Este formato es estándar en la industria y es compatible con la mayoría de herramientas de captura y análisis. Puedes:
 
 - **Guardar** una captura para examinarla después o como registro de un fallo.
-- **Abrir** archivos .pcap existentes, incluyendo colecciones públicas de capturas (como las de netresec.com) que contienen ejemplos de operación normal de protocolos, ataques de red, malware y ejercicios de pentesting.
+- **Abrir** archivos .pcap/.pcapng existentes, incluyendo colecciones públicas de capturas (como las de netresec.com) que contienen ejemplos de operación normal de protocolos, ataques de red, malware y ejercicios de pentesting.
 
 ---
 
@@ -211,7 +211,7 @@ Cuando la escala o complejidad crece, los operadores pasan de gestión manual a 
 - **SSOT (Single Source of Truth):** Configuración intencionada de cada dispositivo. Se compara con el estado real para detectar desviaciones.
 - **Time series database:** Snapshots periódicos del estado de red e historial de eventos. Permite "rebobinar" y hacer root cause analysis.
 - **Automation system:** Scripts que extraen datos del SSOT y aplican configuraciones, o que recogen estado de los dispositivos para la state database.
-- **Dashboard (pane of glass):** Vista rápida del estado de la red con alertas ante fallos, sobrecarga o indisponibilidad.
+- **Dashboard (single pane of glass):** Vista rápida del estado de la red con alertas ante fallos, sobrecarga o indisponibilidad.
 
 **Protocolos y métodos de recolección de datos:**
 
@@ -226,7 +226,7 @@ Cuando la escala o complejidad crece, los operadores pasan de gestión manual a 
 
 Los fabricantes (incluido Cisco con **Meraki**) ofrecen gestión de red basada en la nube. Los dispositivos (APs, routers, switches) envían su estado y telemetría a la plataforma cloud del fabricante. La plataforma funciona como un NMS pero hospedado externamente. El tráfico de datos de los usuarios **no pasa por la nube del fabricante** — solo metadatos y estado de los dispositivos.
 
-#### triaje y sistema de trabajo (Ticketing)
+#### Triaje y sistema de trabajo (Ticketing)
 
 Todo equipo de operaciones necesita un sistema para que los usuarios reporten problemas, se haga **triaje** (evaluar importancia y dificultad de reparación), y se priorice y gestione la carga de trabajo. Los failure reports alimentan este sistema de ticketing.
 
@@ -273,7 +273,7 @@ Los cambios desde CLI modifican solo la running config. Para que persistan: `cop
 | `show ip interface brief` | Tabla resumen de todas las interfaces: nombre, IP asignada, estado (up/down), protocolo (up/down) | Vista rápida del estado de todas las interfaces y sus IPs. Primer comando a ejecutar para verificar configuración IP. |
 | `show interfaces` | Información detallada de todas las interfaces: MAC, IP, máscara, MTU, ancho de banda, encapsulación, contadores de paquetes, errores, drops | Diagnóstico profundo: comprobar errores, drops, estado físico y lógico |
 | `show interfaces <nombre>` | Lo mismo pero solo para una interfaz específica (ej: `show interfaces fastethernet1`) | Cuando necesitas detalles de una interfaz concreta |
-| `show interface status` | Estado resumido de cada puerto del switch: nombre, estado (connected/notconnect), VLAN, dúplex, velocidad, tipo | Verificar rápidamente qué puertos del switch están activos, en qué VLAN y a qué velocidad |
+| `show interfaces status` | Estado resumido de cada puerto del switch: nombre, estado (connected/notconnect), VLAN, dúplex, velocidad, tipo | Verificar rápidamente qué puertos del switch están activos, en qué VLAN y a qué velocidad |
 | `show ip route` | Tabla de enrutamiento completa: redes destino, código de origen (C=connected, S=static, O=OSPF...), next hop, interfaz de salida, gateway of last resort | Diagnosticar problemas de alcanzabilidad. Es el primer sitio donde mirar si un ping falla. |
 | `show cdp neighbors` | Dispositivos Cisco directamente conectados: Device ID, interfaz local, interfaz remota, capacidad (R=Router, S=Switch), plataforma | Descubrir la topología física. Funciona sin IP configurada (CDP opera a nivel 2). Clave para verificar que las conexiones físicas son correctas. |
 | `show mac address-table` | Tabla de direcciones MAC del switch: VLAN, MAC, tipo (Dynamic/Static), puerto | Verificar qué dispositivos ha aprendido el switch y en qué puerto están |
@@ -308,13 +308,13 @@ Protocolo propietario de Cisco, ligero, que descubre automáticamente dispositiv
 ## 🎯 Puntos críticos para el examen
 
 - **Documentación:** Los cinco tipos son diagramas, descripciones, baselines, failure reports, y hardware/software. Las baselines son esenciales porque sin ellas no puedes saber si algo funciona "peor de lo normal".
-- **triaje** = determinar importancia del fallo y en qué orden trabajar. No confundir con diagnosticar.
+- **Triaje** = determinar importancia del fallo y en qué orden trabajar. No confundir con diagnosticar.
 - **Half-split:** Dos fases → **medir** (orientar + observar) y **dividir** (moverse en la dirección correcta). Se empieza en el punto medio entre origen y destino y se reduce el espacio del problema a la mitad en cada iteración.
 - **Backout plan** = instrucciones para restaurar el estado previo al cambio si algo sale mal. Imprescindible en todo proceso de change management.
 - **Post-mortem:** Centrarse en arreglar el problema, no en buscar culpables. Documentar causa raíz, dwell time, y cómo prevenir recurrencia.
 - **Temporary fix vs. permanent fix:** El temporal aumenta deuda técnica y debe reemplazarse. *Nada es más permanente que un fix temporal.*
 - **False positive:** Algo parece roto pero no lo está. Cuidado con perseguir anomalías que resultan ser comportamiento normal.
-- **Wireshark:** Herramienta open-source de captura/análisis de paquetes. Tres paneles (lista, decodificación, hex dump). Formato de archivo: **`.pcap`** (estándar de la industria). Se puede guardar, abrir y compartir.
+- **Wireshark:** Herramienta open-source de captura/análisis de paquetes. Tres paneles (lista, decodificación, hex dump). Formato de archivo: **`.pcap`** y **`.pcapng`** (estándar de la industria). Se puede guardar, abrir y compartir.
 - **Efecto de firewalls:** Los asteriscos (*) en traceroute significan que ICMP está filtrado/bloqueado, no necesariamente que la ruta esté rota. Ping fallido no siempre = destino inalcanzable.
 - **Estrategia de ping escalonado:** (1) gateway → (2) IP remota → (3) nombre de dominio. Cada paso descarta una capa de problemas.
 - **tracert** (Windows) usa ICMP; **traceroute** (Linux/macOS) usa UDP.
@@ -337,7 +337,7 @@ Protocolo propietario de Cisco, ligero, que descubre automáticamente dispositiv
 ## Mini-resumen
 
 - **Metodología y help desk:** Documentar todo (diagramas, descripciones, baselines, failure reports, manuales locales). Usar **triaje** para priorizar fallos en el NOC. Seguir **change management** con backout plan y change windows. Aplicar el método **half-split**: empezar en el punto medio entre origen y destino, medir, dividir, repetir. Tras resolver, hacer **post-mortem** (sin culpables). Cuidado con los **false positives** y con las soluciones temporales que se vuelven permanentes.
-- **Wireshark y .pcap:** Herramienta open-source de captura y análisis de paquetes. Tres paneles (lista, decodificación, hex dump). Filtros de captura para reducir volumen. Se guardan y abren archivos en formato **`.pcap`** (estándar). Permite diagnosticar problemas invisibles para ping (retransmisiones TCP, paquetes descartados, handshakes fallidos).
+- **Wireshark y .pcap/.pcapng:** Herramienta open-source de captura y análisis de paquetes. Tres paneles (lista, decodificación, hex dump). Filtros de captura para reducir volumen. Se guardan y abren archivos en formato **`.pcap`** o **`.pcapng`**. Permite diagnosticar problemas invisibles para ping (retransmisiones TCP, paquetes descartados, handshakes fallidos).
 - **Comandos de diagnóstico:** `ping` verifica conectividad (ICMP echo). Estrategia escalonada: gateway → IP remota → dominio. `traceroute`/`tracert` descubre la ruta salto a salto (TTL incremental). `nslookup` resuelve DNS. `ipconfig`/`ifconfig`/`ip addr` muestran la configuración IP local. Los **firewalls pueden bloquear ICMP**, causando falsos negativos en ping y asteriscos en traceroute.
 - **Acceso a dispositivos:** **Console** (acceso directo, "plan B"), **SSH** (remoto cifrado, siempre preferido), **Telnet** (remoto sin cifrar, solo provisional), **RDP** (escritorio remoto a jump host), **VPN** (túnel cifrado para acceso desde fuera). **Terminal emulators** (PuTTY, etc.) necesarios para console y SSH. **NMS** centraliza monitorización (SNMP, NETCONF/YANG, CLI/scripts, gRPC). **Meraki** = gestión cloud. Gestión **in-band** (misma red) vs. **out-of-band** (red dedicada de gestión). Tres reglas: usar SSH, controlar acceso físico al console, nunca permitir gestión directa desde Internet.
-- **Comandos `show` de Cisco:** Nivel 1 (`>`) = solo lectura; nivel 15 (`#`) = lectura/escritura. `?` para ayuda contextual, Tab para autocompletar. `show running-config` (config activa en RAM), `show version` (IOS, modelo, último reinicio), `show inventory` (componentes físicos con PID/SN), `show ip interface brief` (resumen rápido IP/estado), `show interfaces` (detalles completos por interfaz), `show interface status` (estado de puertos del switch), `show ip route` (tabla de enrutamiento: C/S/O + gateway of last resort), `show cdp neighbors` (vecinos Cisco directos, funciona sin IP), `show mac address-table` (MAC→puerto→VLAN en switches), `show switch` (info de stacks).
+- **Comandos `show` de Cisco:** Nivel 1 (`>`) = solo lectura; nivel 15 (`#`) = lectura/escritura. `?` para ayuda contextual, Tab para autocompletar. `show running-config` (config activa en RAM), `show version` (IOS, modelo, último reinicio), `show inventory` (componentes físicos con PID/SN), `show ip interface brief` (resumen rápido IP/estado), `show interfaces` (detalles completos por interfaz), `show interfaces status` (estado de puertos del switch), `show ip route` (tabla de enrutamiento: C/S/O + gateway of last resort), `show cdp neighbors` (vecinos Cisco directos, funciona sin IP), `show mac address-table` (MAC→puerto→VLAN en switches), `show switch` (info de stacks).
