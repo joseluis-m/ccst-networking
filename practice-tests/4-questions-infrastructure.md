@@ -678,7 +678,7 @@ D) Enviar un mensaje de error ARP al Host A
 
 **Pregunta 30. [Hotspot]**
 
-*Descripción del diagrama:* Se muestra la siguiente topología simplificada:
+Se muestra la siguiente topología simplificada:
 
 ```
 [PC-A: 192.168.1.10/24] --- [Switch L2] --- [Router: 192.168.1.1] --- [Internet] --- [Server: 8.8.8.8]
