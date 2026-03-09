@@ -12,9 +12,9 @@ Este dominio cubre los fundamentos de seguridad de redes desde tres ángulos com
 
 🔑 *Analogía:* Un firewall es como un portero de discoteca con lista de invitados: comprueba cada paquete contra un conjunto de reglas y decide si lo deja pasar (permit) o lo bloquea (deny). Un firewall stateful además recuerda quién salió, para solo dejar entrar respuestas de conversaciones que empezaron desde dentro.
 
-#### Filtrado de paquetes por reglas (Access Lists)
+#### Filtrado de paquetes por reglas (ACL)
 
-Las **access lists** (listas de acceso) son conjuntos de políticas aplicadas al reenvío de paquetes en un router o firewall. Cada regla especifica:
+Las **access control lists** (ACL, listas de control de acceso) son conjuntos de políticas aplicadas al reenvío de paquetes en un router o firewall. Cada regla especifica:
 
 | Campo | Función |
 |-------|---------|
@@ -22,7 +22,7 @@ Las **access lists** (listas de acceso) son conjuntos de políticas aplicadas al
 | **Acción: `permit` o `deny`** | Reenviar o descartar el paquete si coincide |
 | **Dirección origen** | Coincidir con la IP de origen (`any` = cualquiera, `host X.X.X.X` = una IP específica) |
 | **Dirección destino** | Coincidir con la IP de destino |
-| **Protocolo/puerto** (opcional) | Coincidir con protocolo (TCP, UDP, IP) y puerto específico (ej: `eq telnet`, `eq 80`) |
+| **Protocolo/puerto** (opcional) | Coincidir con protocolo (TCP, UDP, IP) y puerto específico (por ejemplo, `eq telnet`, `eq 80`) |
 
 **Regla implícita final:** Si un paquete no coincide con ninguna regla de la lista, **se descarta** (deny implícito). Por eso toda access list debe terminar con `permit ip any any` si quieres permitir el resto del tráfico.
 
@@ -114,7 +114,7 @@ Los sistemas de autenticación se basan en tres factores:
 
 La **fortaleza** de una contraseña se mide en **entropy bits**: cuántos intentos necesitaría un ataque de fuerza bruta para descubrirla.
 
-**Regla clave del libro:** Una vez incluido un mínimo de variación (mayúsculas, símbolos, números), la **longitud es el factor más importante**. Un password de 15 caracteres con poca variación es más seguro que uno de 10 con mucha variación.
+**Regla clave:** Una vez incluido un mínimo de variación (mayúsculas, símbolos, números), la **longitud es el factor más importante**. Un password de 15 caracteres con poca variación es más seguro que uno de 10 con mucha variación.
 
 **Directrices:**
 - Mínimo 8 caracteres; más largo = más fuerte
@@ -126,7 +126,7 @@ La **fortaleza** de una contraseña se mide en **entropy bits**: cuántos intent
 
 **¿Cambiar contraseñas periódicamente?** Su utilidad se cuestiona porque los atacantes modernos instalan backdoors en días. Pero es **obligatorio** cambiarlas tras una filtración (breach) de un fichero de contraseñas.
 
-#### Identity Stores (Active Directory)
+#### Identity stores (Active Directory)
 
 Los servidores AAA raramente almacenan directamente las credenciales. En su lugar, consultan un **identity store**: una aplicación especializada que centraliza servicios de AAA, directorio de usuarios, control de acceso a edificios, y sistemas de comunicación internos.
 
@@ -162,7 +162,7 @@ Los servidores AAA raramente almacenan directamente las credenciales. En su luga
 | **DoS (Denial of Service)** | Agotar un recurso finito para denegar el uso de un servicio. Lanzado desde pocos dispositivos. **No requiere acceso previo a la red.** | Tumbar un servicio, distraer al equipo de seguridad, dañar reputación |
 | **DDoS (Distributed DoS)** | DoS lanzado desde cientos/miles de dispositivos distribuidos (botnet). | Consumir ancho de banda o recursos a gran escala |
 | **DDoS directo (burner)** | Los dispositivos del botnet envían tráfico directamente a la víctima con sus IPs reales. "Quema" el botnet (los dispositivos quedan expuestos). **Sin spoofing de dirección.** | Saturar enlaces e interfaces del objetivo por volumen |
-| **DDoS reflexión** | El botnet envía tráfico con IP origen falsificada (spoofed = IP de la víctima) a servidores legítimos (ej: DNS). Estos responden con paquetes grandes hacia la víctima. **Amplifica** el ataque. No quema el botnet. | Amplificar tráfico hacia la víctima sin exponer el botnet |
+| **DDoS reflexión** | El botnet envía tráfico con IP origen falsificada (spoofed = IP de la víctima) a servidores legítimos (por ejemplo, DNS). Estos responden con paquetes grandes hacia la víctima. **Amplifica** el ataque. No quema el botnet. | Amplificar tráfico hacia la víctima sin exponer el botnet |
 | **Resource exhaustion** | Agotar recursos específicos: caché DNS de servidor recursivo, caché TCP de sesiones half-open, caché NAT. | Denegar servicio sin necesitar gran ancho de banda |
 
 #### Lateral movement y acciones post-intrusión
@@ -213,10 +213,8 @@ En el contexto del establecimiento de sesiones seguras (TLS, QUIC), un **certifi
 |-----------|-----|--------|-----------------|--------|
 | **WEP** | 1999 | 64/128 bits | Diseñado para ofrecer seguridad equivalente a conexión cableada. Ataques viables descubiertos rápidamente. | **Retirado en 2004** por la Wi-Fi Alliance. No usar nunca. Reemplazar cualquier AP que solo soporte WEP. |
 | **WPA** | 2003 | 256 bits | Tres mejoras sobre WEP: (1) claves de 256 bits, (2) **message integrity code** (MIC) en cada paquete para detectar manipulación, (3) **autenticación** de usuarios/hosts (no solo cifrado). | Superado por WPA2/WPA3 |
-| **WPA2** | Post-2003 | 256 bits | Versión más segura de WPA. Mejoras en cifrado y protocolos de autenticación. Estándar durante muchos años. | Ampliamente usado, pero reemplazado por WPA3 |
-| **WPA3** | En desarrollo* | 256+ bits | Versión más segura que WPA2. Mejoras en protección contra ataques offline de diccionario, cifrado individual por sesión. | Recomendado cuando esté disponible |
-
-*\*Nota: El libro indica que WPA3 estaba siendo desarrollado por la Wi-Fi Alliance al momento de escritura.*
+| **WPA2** | 2004 | 256 bits | Versión más segura de WPA. Mejoras en cifrado y protocolos de autenticación. Estándar durante muchos años. | Ampliamente usado, pero reemplazado por WPA3 |
+| **WPA3** | 2018 | 256+ bits | Versión más segura que WPA2. Mejoras en protección contra ataques offline de diccionario, cifrado individual por sesión. | Recomendado |
 
 #### Personal vs. Enterprise
 
