@@ -561,19 +561,3 @@ D) Reenvía el SYN de D al servidor AAA para autenticación
 
 🔥 **Preguntas de escenario de amenaza real: 6**
 → P3 (phishing personalizado), P7 (ransomware en empresa), P10 (DDoS reflexión DNS), P12 (ACL bloqueando Telnet), P22 (supply chain Target/SolarWinds), P28 (ACL evaluada en orden)
-
----
-
-🎓 **Con las 180 preguntas de los 6 dominios dominadas, estás listo para superar el examen CCST Networking 100-150. ¡Mucha suerte, Joselu!**
-
-📦 **Resumen del proyecto completo:**
-
-| Dominio | Archivo | Preguntas |
-|---------|---------|:---------:|
-| 1 — Standards and Concepts | Dominio1_Preguntas_Practica_CCST.md | 30 |
-| 2 — Addressing and Subnet Formats | Dominio2_Preguntas_Practica_CCST.md | 30 |
-| 3 — Endpoints and Media Types | Dominio3_Preguntas_Practica_CCST.md | 30 |
-| 4 — Infrastructure | Dominio4_Preguntas_Practica_CCST.md | 30 |
-| 5 — Diagnosing Problems | Dominio5_Preguntas_Practica_CCST.md | 30 |
-| 6 — Security | Dominio6_Preguntas_Practica_CCST.md | 30 |
-| **TOTAL** | | **180** |
