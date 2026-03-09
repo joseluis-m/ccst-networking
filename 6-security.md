@@ -162,7 +162,7 @@ Los servidores AAA raramente almacenan directamente las credenciales. En su luga
 | **DoS (Denial of Service)** | Agotar un recurso finito para denegar el uso de un servicio. Lanzado desde pocos dispositivos. **No requiere acceso previo a la red.** | Tumbar un servicio, distraer al equipo de seguridad, dañar reputación |
 | **DDoS (Distributed DoS)** | DoS lanzado desde cientos/miles de dispositivos distribuidos (botnet). | Consumir ancho de banda o recursos a gran escala |
 | **DDoS directo (burner)** | Los dispositivos del botnet envían tráfico directamente a la víctima con sus IPs reales. "Quema" el botnet (los dispositivos quedan expuestos). **Sin spoofing de dirección.** | Saturar enlaces e interfaces del objetivo por volumen |
-| **DDoS reflexión** | El botnet envía tráfico con IP origen falsificada (spoofed = IP de la víctima) a servidores legítimos (por ejemplo, DNS). Estos responden con paquetes grandes hacia la víctima. **Amplifica** el ataque. No quema el botnet. | Amplificar tráfico hacia la víctima sin exponer el botnet |
+| **DDoS reflexión** | El botnet envía tráfico con IP origen falsificada (spoofed = IP de la víctima) a servidores legítimos (por ejemplo, DNS). Estos responden con paquetes grandes hacia la víctima. **Amplifica** el ataque. No "quema" el botnet. | Amplificar tráfico hacia la víctima sin exponer el botnet |
 | **Resource exhaustion** | Agotar recursos específicos: caché DNS de servidor recursivo, caché TCP de sesiones half-open, caché NAT. | Denegar servicio sin necesitar gran ancho de banda |
 
 #### Lateral movement y acciones post-intrusión
@@ -242,7 +242,7 @@ Para espiar una conexión WPA, un atacante necesitaría descubrir la clave actua
 
 - **Cambiar siempre** el SSID y la contraseña por defecto de fábrica.
 - Seleccionar una contraseña **larga** (la longitud importa más que los símbolos) y fácil de recordar.
-- **Siempre usar cifrado** — sin él, cualquiera que reciba la señal puede capturar los datos (war driving).
+- **Siempre usar cifrado** — sin él, cualquiera que reciba la señal puede capturar los datos (wardriving).
 - Usar **WPA-PSK** como mínimo; WPA2 o WPA3 preferido.
 - Considerar crear SSIDs separados: uno principal (hosts, streaming) con acceso a la red interna, y uno **guest** (invitados, IoT) con acceso solo a Internet.
 - Las redes con SSID oculto (no emitido) requieren introducir manualmente el nombre para conectarse.
@@ -270,9 +270,9 @@ Opciones adicionales relevantes: auto-conexión a redes conocidas, **Random hard
 - **Certificados:** Contienen información del host, se intercambian al establecer conexiones seguras. Permiten verificar la identidad del servidor.
 - **Cryptographic hash:** Firma repetible pero no reversible. Sirve para autenticación, validación de integridad y nonrepudiation.
 - **Firewalls stateful:** "Espejo unidireccional" — permiten tráfico de sesiones iniciadas desde dentro, bloquean conexiones nuevas desde fuera. Clave: rastrean el **estado de la conexión TCP** (SYN → SYN-ACK → ACK).
-- **Access lists:** Reglas permit/deny evaluadas en orden. **Deny implícito** al final si no hay coincidencia. Siempre terminar con `permit ip any any` si quieres permitir el resto.
+- **Access lists (ACL):** Reglas permit/deny evaluadas en orden. **Deny implícito** al final si no hay coincidencia. Siempre terminar con `permit ip any any` si quieres permitir el resto.
 - **Spam vs. Phishing:** Spam = masivo, no personalizado. Phishing = personalizado al destinatario. Ambos son social engineering.
-- **DoS vs. DDoS:** DoS = pocos dispositivos, agota recursos locales. DDoS = cientos/miles de dispositivos (botnet). **Directo** = IPs reales, quema botnet, sin spoofing. **Reflexión** = IPs falsificadas, amplificación vía servidores DNS, no quema botnet.
+- **DoS vs. DDoS:** DoS = pocos dispositivos, agota recursos locales. DDoS = cientos/miles de dispositivos (botnet). **Directo** = IPs reales, "quema" botnet, sin spoofing. **Reflexión** = IPs falsificadas, amplificación vía servidores DNS, no "quema" botnet.
 - **Malware:** Software autorreplicante. Tres acciones: impedir acceso (ransomware), registrar interacciones (keylogger), filtrar datos.
 - **MITM:** Atacante entre dos partes, descifra y re-cifra transparentemente. Puede ver datos en claro e inyectar contenido.
 - **Supply chain attack:** Entrada vía proveedor o software de terceros. Ejemplos: Target (HVAC), SolarWinds (código infectado), Microsoft Exchange (backdoor).
@@ -289,6 +289,6 @@ Opciones adicionales relevantes: auto-conexión a redes conocidas, **Random hard
 
 ## Mini-resumen
 
-- **Firewalls (6.1):** Las access lists definen reglas `permit`/`deny` por IP origen/destino, protocolo y puerto. Deny implícito al final. El filtrado **stateful** rastrea el estado TCP y funciona como espejo unidireccional (permite respuestas, bloquea conexiones nuevas de fuera). El filtrado **contextual** (WAF, IDS) inspecciona contenido con conocimiento de la aplicación. Un firewall moderno combina stateful + IDS + NAT + filtrado por puerto/dirección. **Defense in depth** = múltiples capas defensivas con vulnerabilidades diferentes.
+- **Firewalls (6.1):** Las ACL definen reglas `permit`/`deny` por IP origen/destino, protocolo y puerto. Deny implícito al final. El filtrado **stateful** rastrea el estado TCP y funciona como espejo unidireccional (permite respuestas, bloquea conexiones nuevas de fuera). El filtrado **contextual** (WAF, IDS) inspecciona contenido con conocimiento de la aplicación. Un firewall moderno combina stateful + IDS + NAT + filtrado por puerto/dirección. **Defense in depth** = múltiples capas defensivas con vulnerabilidades diferentes.
 - **Conceptos de seguridad (6.2):** **CIA** = confidencialidad + integridad + disponibilidad; métodos comunes: encryption, segmentation, access control, monitoring, resilience. **AAA** = autenticación (verificar identidad) → autorización (verificar permisos) → accounting (registrar actividad). **MFA** combina factores de distintas categorías (know/have/are); contraseñas = factor más débil; longitud > variación en password strength. **Active Directory** = identity store más desplegado (Microsoft). **Cifrado simétrico** (una clave, rápido, datos en flujo) + **asimétrico** (par de claves, lento, intercambio de claves y firmas) se combinan en protocolos reales. **Certificates** verifican identidad del servidor. **Hashes** = firmas no reversibles para integridad/nonrepudiation. **Amenazas:** social engineering (spam=masivo, phishing=personalizado), malware (autorreplicante: ransomware, keyloggers, wipers), supply chain attacks (vía proveedores), MITM (interceptación transparente), DoS/DDoS (agotar recursos; directo=IPs reales, reflexión=IPs falsificadas+amplificación). **Lateral movement** → C2 → data exfiltration → ransomware. **Zero trust** = autenticación continua sin asumir perímetro. **DKIM/SPF/DMARC** = defensa a nivel de email.
 - **Seguridad Wi-Fi (6.3):** WEP retirado (2004), nunca usar. **WPA** (2003): claves 256-bit, MIC, autenticación de usuarios — tres mejoras sobre WEP. **WPA2** más seguro que WPA. **WPA3** más seguro que WPA2. **Personal (PSK):** clave compartida, para hogares. **Enterprise:** servidor RADIUS, credenciales individuales, para empresas, más seguro. Siempre cambiar SSID y contraseña por defecto. Siempre usar cifrado (mínimo WPA-PSK). Crear SSIDs separados para red interna y guest. SSID = dominio de broadcast separado.
