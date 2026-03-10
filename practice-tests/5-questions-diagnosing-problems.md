@@ -7,13 +7,13 @@
 
 En la metodología de troubleshooting half-split, ¿cuál es el primer paso recomendado antes de aplicar la técnica formal de dividir el espacio del problema?
 
-A) Reinstalar el firmware de todos los routers
+A) Reinstalar el firmware de todos los routers y switches
 
 B) Comprobar el cambio más reciente realizado en la red
 
 C) Reemplazar todos los cables de la ruta afectada
 
-D) Abrir un caso con el fabricante del equipo
+D) Abrir un caso con el fabricante del equipo notificando el problema
 
 <details>
 <summary>Respuesta</summary>
@@ -34,7 +34,7 @@ B) .pcap/.pcapng
 
 C) .csv
 
-D) .log
+D) .log/.txt
 
 <details>
 <summary>Respuesta</summary>
@@ -63,7 +63,7 @@ Ping request could not find host www.google.com
 
 A) El cable de red del PC está desconectado
 
-B) El default gateway no está configurado correctamente
+B) El default gateway no funciona o no está configurado correctamente
 
 C) El servidor DNS no funciona o no está configurado correctamente
 
@@ -137,14 +137,14 @@ A) La tabla de enrutamiento está vacía
 
 B) El comando `show ip route` no existe en Cisco IOS
 
-C) El administrador está en modo User EXEC (nivel 1) y necesita ejecutar `enable` para acceder al modo Privileged EXEC
+C) El administrador está en modo User EXEC
 
 D) La interfaz de red del router está deshabilitada
 
 <details>
 <summary>Respuesta</summary>
 
-✅ Correcta: C) El administrador está en modo User EXEC (nivel 1) y necesita ejecutar `enable` para acceder al modo Privileged EXEC
+✅ Correcta: C) El administrador está en modo User EXEC
 
 💡 Explicación: El prompt `router>` indica modo User EXEC (nivel 1, solo lectura básica). El comando `show ip route` requiere privileged EXEC (nivel 15, prompt `router#`). El administrador debe ejecutar `enable` (e introducir la contraseña de enable secret) para acceder al nivel 15, donde tiene acceso completo a todos los comandos `show` y a `config terminal`.
 </details>
@@ -191,7 +191,7 @@ Switch# show mac address-table
 
 A) Esa dirección MAC fue configurada manualmente por el administrador
 
-B) Esa dirección MAC fue aprendida automáticamente del tráfico de red (bridge learning)
+B) Esa dirección MAC fue aprendida automáticamente del tráfico de red
 
 C) Esa dirección MAC pertenece a la CPU del propio switch
 
@@ -199,7 +199,7 @@ D) Esa dirección MAC ha sido bloqueada por el filtrado MAC
 
 <details>
 <summary>Respuesta</summary>
-✅ Correcta: B) Esa dirección MAC fue aprendida automáticamente del tráfico de red (bridge learning)
+✅ Correcta: B) Esa dirección MAC fue aprendida automáticamente del tráfico de red
 
 💡 Explicación: Las entradas DYNAMIC se crean automáticamente cuando el switch examina la MAC de origen de las tramas que recibe y las asocia al puerto de entrada (bridge learning). Las entradas STATIC están configuradas manualmente o son del propio sistema (como la entrada CPU). El switch usa esta tabla para reenviar tramas de forma eficiente al puerto correcto.
 </details>
@@ -216,7 +216,7 @@ B) In-band gestiona a través de las mismas interfaces de tráfico de usuarios; 
 
 C) In-band solo funciona con routers; OOB solo funciona con switches
 
-D) In-band es más seguro que OOB porque comparte la red de producción
+D) In-band usa una red de gestión dedicada y separada; OOB gestiona a través de las mismas interfaces de tráfico de usuarios
 
 <details>
 <summary>Respuesta</summary>
@@ -243,15 +243,15 @@ GigabitEthernet0/2  unassigned    YES unset  administratively down down
 
 A) La interfaz funciona correctamente sin problemas
 
-B) La interfaz está habilitada pero no hay comunicación capa 2 con el otro extremo (problema de cableado, velocidad/dúplex o el otro extremo no responde)
+B) La interfaz está habilitada pero no hay comunicación capa 2 con el otro extremo
 
-C) La interfaz ha sido deshabilitada manualmente con el comando `shutdown`
+C) La interfaz ha sido deshabilitada manualmente con el comando `shutdown` y no hay comunicación
 
 D) La dirección IP está duplicada en la red
 
 <details>
 <summary>Respuesta</summary>
-✅ Correcta: B) La interfaz está habilitada pero no hay comunicación capa 2 con el otro extremo (problema de cableado, velocidad/dúplex o el otro extremo no responde)
+✅ Correcta: B) La interfaz está habilitada pero no hay comunicación capa 2 con el otro extremo
 
 💡 Explicación: "Interface is up, line protocol is down" significa que la interfaz está habilitada (no se ha ejecutado `shutdown`) pero no puede establecer comunicación de capa 2 con el otro extremo. Las causas típicas son: cable defectuoso, configuración de velocidad/dúplex no coincidente, o el equipo del otro extremo no responde. GE0/2 muestra "administratively down" — esa sí fue deshabilitada con `shutdown`.
 </details>
@@ -315,7 +315,7 @@ D) El DNS no puede resolver la dirección del salto 3
 
 A) Mean Time To Route — tiempo medio para encontrar una ruta alternativa
 
-B) Mean Time To Repair — tiempo total de indisponibilidad hasta la reparación
+B) Mean Time To Repair — tiempo medio de indisponibilidad hasta la reparación
 
 C) Maximum Throughput Transfer Rate — tasa máxima de transferencia
 
@@ -336,9 +336,9 @@ D) Mean Time To Reboot — tiempo medio de reinicio del dispositivo
 
 A) nslookup dirigido al default gateway
 
-B) El comando `ipconfig /all`
+B) El comando `ipconfig /all` muestra tanto IP privada como IP pública
 
-C) Un servicio externo como Google "what is my IP" o checkip.amazonaws.com
+C) Un servicio externo como checkip.amazonaws.com
 
 D) El comando `show ip route` en el router
 
@@ -376,11 +376,11 @@ D) Meraki solo gestiona routers, no switches ni APs
 
 ¿Cuáles de los siguientes son componentes de un Network Management System (NMS)? (Elige dos)
 
-A) State database que almacena el estado actual de cada dispositivo y la salud general de la red
+A) State database que almacena el estado actual de cada dispositivo
 
 B) Cable tester que verifica la integridad física de cada enlace de cobre
 
-C) Dashboard (single pane of glass) que muestra una vista rápida del estado de la red con alertas
+C) Dashboard que muestra una vista rápida del estado de la red con alertas
 
 D) Servidor DHCP que asigna direcciones IP a todos los hosts de la red
 
@@ -388,7 +388,7 @@ D) Servidor DHCP que asigna direcciones IP a todos los hosts de la red
 <summary>Respuesta</summary>
 ✅ Correcta: A) y C)
 
-💡 Explicación: Un NMS incluye: state database (estado actual), SSOT (configuración intencionada), time series database (historial), automation system (scripts) y dashboard (single pane of glass con alertas). Un cable tester (B) es una herramienta física independiente, y un servidor DHCP (D) es un servicio de red, no un componente de NMS.
+💡 Explicación: Un NMS incluye: state database (estado actual y salud general de la red), SSOT (configuración intencionada), time series database (historial), automation system (scripts) y dashboard (single pane of glass con alertas). Un cable tester (B) es una herramienta física independiente, y un servidor DHCP (D) es un servicio de red, no un componente de NMS.
 </details>
 
 ---
@@ -397,11 +397,11 @@ D) Servidor DHCP que asigna direcciones IP a todos los hosts de la red
 
 ¿Cuáles de las siguientes son reglas de seguridad fundamentales para la gestión remota de dispositivos de red? (Elige dos)
 
-A) Usar siempre SSH para gestionar dispositivos y deshabilitar Telnet después de configurar SSH
+A) Usar siempre SSH para gestionar dispositivos y deshabilitar Telnet
 
 B) Permitir conexiones de gestión directas desde Internet para mayor comodidad
 
-C) Nunca permitir conexiones de gestión directas desde fuera de la red; usar jump host o VPN primero
+C) Nunca permitir conexiones de gestión directas desde fuera de la red
 
 D) Dejar el puerto console accesible sin restricciones para facilitar el soporte rápido
 
@@ -409,7 +409,7 @@ D) Dejar el puerto console accesible sin restricciones para facilitar el soporte
 <summary>Respuesta</summary>
 ✅ Correcta: A) y C)
 
-💡 Explicación: Las tres reglas de seguridad son: (1) usar siempre SSH y deshabilitar Telnet (A), (2) controlar el acceso físico al console, y (3) nunca permitir gestión directa desde Internet — conectar primero a un jump host interno mediante RDP/SSH/VPN (C). Las opciones B y D violan directamente estas reglas de seguridad.
+💡 Explicación: Las tres reglas de seguridad son: (1) usar siempre SSH y deshabilitar Telnet después de configurar SSH (A), (2) controlar el acceso físico al console, y (3) nunca permitir gestión directa desde Internet — conectar primero a un jump host interno mediante RDP/SSH/VPN (C). Las opciones B y D violan directamente estas reglas de seguridad.
 </details>
 
 ---
@@ -418,11 +418,11 @@ D) Dejar el puerto console accesible sin restricciones para facilitar el soporte
 
 ¿Cuáles de las siguientes situaciones producirían un false positive en el diagnóstico de red? (Elige dos)
 
-A) Un ping falla porque el firewall del destino bloquea ICMP, aunque el host esté funcionando correctamente
+A) Un ping falla porque el firewall del destino bloquea ICMP
 
 B) Un enlace se cae físicamente y los usuarios pierden conectividad
 
-C) Un traceroute muestra asteriscos en un salto porque el router tiene deshabilitadas las respuestas ICMP, pero el tráfico pasa sin problema
+C) Un traceroute muestra asteriscos en un salto porque el router tiene deshabilitadas las respuestas ICMP
 
 D) Un switch se reinicia y todos los hosts conectados pierden conectividad temporalmente
 
@@ -441,9 +441,9 @@ D) Un switch se reinicia y todos los hosts conectados pierden conectividad tempo
 
 A) Medir — orientarse al punto actual y observar qué modelo explica lo que está pasando
 
-B) Reemplazar — sustituir todos los componentes del camino afectado
+B) Reemplazar — orientarse al punto actual y sustituir todos los componentes del camino afectado
 
-C) Dividir — decidir hacia dónde moverse (hacia el origen, hacia el destino, profundizar o salir del módulo)
+C) Dividir — decidir hacia dónde moverse
 
 D) Escalar — transferir el problema al fabricante del equipo
 
@@ -460,19 +460,19 @@ D) Escalar — transferir el problema al fabricante del equipo
 
 Un administrador necesita recoger datos de configuración y estado de dispositivos Cisco para alimentar un NMS. ¿Cuáles de los siguientes son métodos modernos y preferidos? (Elige dos)
 
-A) SNMP (protocolo legacy, formato MIB, inseguro)
+A) SNMP
 
-B) NETCONF/YANG (formato XML/tags, legible por humanos y máquinas)
+B) NETCONF/YANG
 
 C) Fax de las salidas de `show running-config` impresas
 
-D) Scripts CLI que automatizan comandos, parsean la salida y la almacenan en bases de datos
+D) Scripts CLI
 
 <details>
 <summary>Respuesta</summary>
 ✅ Correcta: B) y D)
 
-💡 Explicación: NETCONF/YANG es el método moderno y preferido (B): transporta datos en formato YANG legible por humanos y máquinas. Los scripts CLI (D) automatizan la ejecución de comandos, parsean la salida y la almacenan. SNMP (A) es legacy e inseguro — muchos operadores buscan eliminarlo. La opción C es absurda en contexto moderno.
+💡 Explicación: NETCONF/YANG es el método moderno y preferido (B): transporta datos en formato YANG legible por humanos y máquinas. Los scripts CLI (D) automatizan la ejecución de comandos, parsean la salida y la almacenan. SNMP (A) es legacy e inseguro, formato MIB — muchos operadores buscan eliminarlo. La opción C es absurda en contexto moderno.
 </details>
 
 ---
@@ -483,7 +483,7 @@ D) Scripts CLI que automatizan comandos, parsean la salida y la almacenan en bas
 
 A) Un backout plan con instrucciones para restaurar el estado previo al cambio si algo falla
 
-B) Documentación del cambio (qué se resuelve, cómo, por qué) y procedimientos de prueba previos
+B) Documentación del cambio y procedimientos de prueba previos
 
 C) Permiso verbal del primer usuario que reporte un problema, sin documentación escrita
 
@@ -666,9 +666,9 @@ O    172.16.0.0/16 [110/20] via 192.168.1.254
 
 Un paquete llega al router con destino 8.8.8.8. **Señala qué ocurrirá con ese paquete.**
 
-A) Se reenviará por la ruta estática hacia 10.0.0.0/8
+A) Se reenviará por la ruta estática hacia 10.0.0.0/8 ya que el gateway of last resort no está configurado
 
-B) Se reenviará por la ruta OSPF hacia 172.16.0.0/16
+B) Se reenviará por la ruta OSPF hacia 172.16.0.0/16 ya que el gateway of last resort no está configurado
 
 C) Se reenviará por la interfaz GigabitEthernet0/0 directamente
 
@@ -700,7 +700,7 @@ Un técnico reporta que la impresora no puede comunicarse con la red. **Señala 
 
 A) Fa0/1 — velocidad incorrecta a 100 Mbps
 
-B) Fa0/2 — estado "notconnect" indica que no hay enlace físico
+B) Fa0/2 — "notconnect" indica que no hay enlace físico
 
 C) Fa0/3 — la impresora está en VLAN 10 en lugar de VLAN 1
 
@@ -767,13 +767,13 @@ A) Physical Address — la MAC es inválida
 
 B) DHCP Enabled — el DHCP debería estar deshabilitado
 
-C) IPv4 Address — la dirección 169.254.x.x indica que DHCP falló y se autoasignó una dirección APIPA
+C) La dirección 169.254.x.x indica que DHCP falló
 
 D) Subnet Mask — la máscara /16 es incorrecta para una red corporativa
 
 <details>
 <summary>Respuesta</summary>
-✅ Correcta: C) IPv4 Address — la dirección 169.254.x.x indica que DHCP falló y se autoasignó una dirección APIPA
+✅ Correcta: C) La dirección 169.254.x.x indica que DHCP falló y se autoasignó una dirección APIPA
 
 💡 Explicación: La dirección 169.254.45.123 pertenece al rango link-local/APIPA (169.254.0.0/16), que se autoasigna cuando un host con DHCP habilitado no puede contactar con ningún servidor DHCP. Los campos Default Gateway y DNS Servers están vacíos, confirmando que DHCP no pudo completar la asignación. La causa raíz puede ser: servidor DHCP caído, cable desconectado al switch, o problema de red entre el host y el servidor DHCP.
 </details>
