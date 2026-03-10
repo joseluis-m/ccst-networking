@@ -335,11 +335,12 @@ B) Solo cifrado asimétrico para todo el proceso
 
 C) Cifrado asimétrico para intercambiar una clave de sesión, y cifrado simétrico para cifrar el flujo de datos
 
-D) Cifrado simétrico para intercambiar claves, y cifrado asimétrico para cifrar los datos
+D) Cifrado simétrico para intercambiar claves (una pública y otra privada), y cifrado asimétrico para cifrar los datos
 
 <details>
 <summary>Respuesta</summary>
 ✅ Correcta: C) Cifrado asimétrico para intercambiar una clave de sesión, y cifrado simétrico para cifrar el flujo de datos
+
 💡 Explicación: Los protocolos reales combinan ambos tipos: usan criptografía asimétrica (par de claves pública/privada, más lenta pero no requiere compartir secreto) para intercambiar una clave de sesión de forma segura, y después usan criptografía simétrica (una sola clave compartida, más rápida) para cifrar el flujo de datos de forma eficiente.
 </details>
 
@@ -367,17 +368,23 @@ D) Es más rápido que el cifrado simétrico y se usa para cifrar grandes volúm
 ---
 
 **Pregunta 18. [Multiple Choice — Choose Two]**
+
 ¿Cuáles de las siguientes son formas comunes de implementar 2FA (Two-Factor Authentication)? (Elige dos)
 
 A) Token rotativo que genera un código cada ~60 segundos, sincronizado con el servidor
+
 B) Usar dos contraseñas diferentes en el mismo formulario de login
+
 C) Push notification que el usuario debe aprobar en su dispositivo móvil
+
 D) Introducir el mismo PIN dos veces para confirmación
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: A) y C)
+
 💡 Explicación: Las formas comunes de 2FA son: código SMS (vulnerable a clonación de SIM), token rotativo de app/hardware que genera códigos cada ~60 segundos (A), y push notification en el móvil que requiere aprobación del usuario (C). 2FA requiere combinar factores de categorías diferentes (algo que sabes + algo que tienes). Usar dos contraseñas (B) o el mismo PIN dos veces (D) sigue siendo solo un factor ("algo que sabes").
-</respuesta>
+</details>
 
 ---
 
