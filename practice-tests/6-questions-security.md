@@ -1,4 +1,4 @@
-<img width="835" height="550" alt="image" src="https://github.com/user-attachments/assets/73c25dcc-8dbf-4bab-b4e5-a5c20ce8c104" /># CCST Networking 100-150 — Preguntas de práctica
+# CCST Networking 100-150 — Preguntas de práctica
 ## Dominio 6: Security (30 preguntas)
 
 ---
