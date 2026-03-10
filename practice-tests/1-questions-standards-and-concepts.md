@@ -476,7 +476,7 @@ Un enlace de red tiene un bandwidth de 1 Gbps. Un administrador observa que el t
 
 A) El enlace tiene un problema porque el throughput debería igualar al bandwidth
 
-B) Es un comportamiento normal: el throughput siempre es menor que el bandwidth, y el goodput siempre es menor que el throughput
+B) Es un comportamiento normal
 
 C) El goodput debería ser mayor que el throughput porque solo cuenta los datos útiles
 
@@ -587,7 +587,7 @@ D) Clientes NTP que sincronizan su reloj por primera vez
 
 ¿Cuáles de las siguientes son características exclusivas de TCP que no posee UDP? (Elige dos)
 
-A) Establecimiento de conexión mediante three-way handshake (SYN → SYN-ACK → ACK)
+A) Establecimiento de conexión mediante three-way handshake
 
 B) Cabecera de solo 8 bytes para minimizar el overhead
 
@@ -599,7 +599,7 @@ D) Capacidad de transportar consultas DNS y tráfico de streaming
 <summary>Respuesta</summary>
 ✅ Correcta: A) y C)
 
-💡 Explicación: TCP se distingue de UDP por ser connection-oriented con three-way handshake y por implementar windowed flow control (el emisor envía un número limitado de bytes antes de esperar confirmación). La cabecera de 8 bytes (B) es característica de UDP, no de TCP. Y tanto TCP como UDP pueden transportar DNS (D), por lo que no es exclusivo de ninguno.
+💡 Explicación: TCP se distingue de UDP por ser connection-oriented con three-way handshake (SYN → SYN-ACK → ACK) y por implementar windowed flow control (el emisor envía un número limitado de bytes antes de esperar confirmación). La cabecera de 8 bytes (B) es característica de UDP, no de TCP. Y tanto TCP como UDP pueden transportar DNS (D), por lo que no es exclusivo de ninguno.
 </details>
 
 ---
