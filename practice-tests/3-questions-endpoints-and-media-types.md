@@ -93,17 +93,17 @@ D) Ambos usan espectro no licenciado pero con diferente potencia
 
 A) Amplifica la señal Wi-Fi para cubrir mayor área
 
-B) Convierte los protocolos propietarios de los dispositivos IoT a IP estándar para su transmisión por la red
-
-C) Asigna direcciones IP a todos los hosts mediante DHCP
+B) Convierte los protocolos propietarios de los dispositivos IoT a IP estándar
+  
+C) Convierte los protocolos propietarios de los dispositivos IP estándar a IoT
 
 D) Filtra el tráfico de broadcast entre VLANs
 
 <details>
 <summary>Respuesta</summary>
-✅ Correcta: B) Convierte los protocolos propietarios de los dispositivos IoT a IP estándar para su transmisión por la red
+✅ Correcta: B) Convierte los protocolos propietarios de los dispositivos IoT a IP
 
-💡 Explicación: El IoT Gateway actúa como traductor entre los protocolos propietarios de los dispositivos IoT (Bluetooth, ZWave, CAN, etc.) y el protocolo IP estándar, permitiendo que los datos lleguen al sistema de análisis central a través de la red IP. No es un amplificador Wi-Fi, un servidor DHCP ni un dispositivo de filtrado de VLANs.
+💡 Explicación: El IoT Gateway actúa como traductor entre los protocolos propietarios de los dispositivos IoT (Bluetooth, ZWave, CAN, etc.) y el protocolo IP estándar, permitiendo que los datos lleguen al sistema de análisis central a través de la red IP. No es un amplificador Wi-Fi ni un dispositivo de filtrado de VLANs.
 </details>
 
 ---
@@ -116,13 +116,13 @@ A) Dirección IPv4 y máscara de subred
 
 B) Servidor DHCP y lease time
 
-C) Tabla de enrutamiento completa del host
+C) Tabla de enrutamiento del host
 
 D) Dirección física (MAC) de la interfaz
 
 <details>
 <summary>Respuesta</summary>
-✅ Correcta: C) Tabla de enrutamiento completa del host
+✅ Correcta: C) Tabla de enrutamiento del host
 
 💡 Explicación: `ipconfig /all` muestra la dirección IPv4, IPv6 link-local, máscara de subred, gateway, servidores DNS, dirección MAC, si la IP fue asignada por DHCP, el servidor DHCP y los tiempos de lease. Para ver la tabla de enrutamiento en Windows se usa `Get-NetRoute` en PowerShell, no `ipconfig`.
 </details>
@@ -165,6 +165,7 @@ D) Cable coaxial blindado
 <details>
 <summary>Respuesta</summary>
 ✅ Correcta: C) Cable plenum
+
 💡 Explicación: Los cables plenum tienen un recubrimiento especial que no emite gases tóxicos al quemarse. Son obligatorios en los espacios de retorno de aire acondicionado (plenum) de edificios comerciales por normativa de seguridad contra incendios. Los cables estándar (STP, Cat 8, coaxial) no tienen necesariamente esta certificación.
 </details>
 
@@ -197,7 +198,7 @@ D) FC (Ferrule Connector)
 
 A) El recubrimiento de plástico exterior
 
-B) El trenzado de los pares, que hace que los campos magnéticos se cancelen mutuamente
+B) El trenzado de los pares
 
 C) La conexión a tierra del conector RJ-45
 
@@ -205,7 +206,7 @@ D) El uso de fibra de vidrio como aislante interno
 
 <details>
 <summary>Respuesta</summary>
-✅ Correcta: B) El trenzado de los pares, que hace que los campos magnéticos se cancelen mutuamente
+✅ Correcta: B) El trenzado de los pares
 
 💡 Explicación: En el cable de par trenzado, los hilos de cada par se trenzan entre sí de forma que los campos magnéticos de cada hilo se cancelan mutuamente, reduciendo la interferencia electromagnética. Esta es la principal defensa contra el ruido. El blindaje metálico (STP) proporciona protección adicional, pero el trenzado es la defensa fundamental.
 </details>
@@ -227,6 +228,7 @@ D) WDM
 <details>
 <summary>Respuesta</summary>
 ✅ Correcta: B) PoE
+
 💡 Explicación: PoE (Power over Ethernet) permite alimentar dispositivos pequeños como teléfonos IP, cámaras y APs Wi-Fi directamente a través del cable Ethernet, eliminando la necesidad de un enchufe separado. El estándar 802.3af (Type 1) proporciona hasta 12,95 W, suficiente para un teléfono IP. CSMA/CA es el método de acceso al medio Wi-Fi, SFP+ es una interfaz pluggable de 10G, y WDM es multiplexación por longitud de onda en fibra.
 </details>
 
@@ -278,7 +280,7 @@ D) TDMA (Time Division Multiple Access)
 
 Un administrador ejecuta `tracert 8.8.8.8` en Windows y observa un asterisco (*) en el salto número 5. ¿Qué indica esto?
 
-A) El router del salto 5 tiene un fallo hardware y debe ser reemplazado
+A) El router del salto 5 tiene un fallo hardware y debe ser reemplazado para garantizar la seguridad de la red
 
 B) El router del salto 5 no envía respuestas ICMP o un firewall intermedio las bloquea
 
@@ -345,7 +347,7 @@ A) Es completamente inmune a interferencias electromagnéticas
 
 B) Es más económica y fácil de instalar que el cobre
 
-C) Ofrece mayor distancia de transmisión (kilómetros frente a 100 metros del cobre)
+C) Ofrece mayor distancia de transmisión
 
 D) Puede alimentar dispositivos endpoint mediante PoE
 
@@ -389,7 +391,7 @@ B) Hacer ping a una dirección MAC para verificar la capa 2
 
 C) Hacer ping a un nombre de dominio para verificar DNS y enrutamiento
 
-D) Hacer ping al servidor DHCP para renovar la IP automáticamente
+D) Hacer ping al servidor DHCP para renovar la IP automáticamente (proceso DORA)
 
 <details>
 <summary>Respuesta</summary>
@@ -422,15 +424,16 @@ D) No requiere ninguna infraestructura de servidor adicional
 ---
 
 **Pregunta 21. [Multiple Choice — Choose Two]**
+
 ¿Cuáles de las siguientes son diferencias entre `tracert` en Windows y `traceroute` en Linux/macOS? (Elige dos)
 
 A) Windows envía paquetes ICMP Echo, mientras que Linux/macOS envían paquetes UDP
 
-B) Windows no muestra el RTT (tiempo de ida y vuelta) pero Linux/macOS sí
+B) Windows no muestra el RTT (tiempo de ida y vuelta) pero Linux y macOS sí que lo muestran
 
-C) El nombre del comando es diferente: `tracert` en Windows vs. `traceroute` en Linux/macOS
+C) El nombre del comando es `tracert` en Windows y `traceroute` en Linux/macOS
 
-D) Traceroute en Linux no usa TTL incremental, a diferencia de Windows
+D) Traceroute en Linux no usa TTL incremental, a diferencia de Windows y macOS
 
 <details>
 <summary>Respuesta</summary>
@@ -445,7 +448,7 @@ D) Traceroute en Linux no usa TTL incremental, a diferencia de Windows
 
 ¿Cuáles de las siguientes son características de un servidor como endpoint de red? (Elige dos)
 
-A) Se conecta habitualmente de forma cableada por Ethernet, a menudo con múltiples interfaces
+A) Se conecta habitualmente de forma cableada por Ethernet
 
 B) Aloja servicios como webs, bases de datos y servicios cloud
 
