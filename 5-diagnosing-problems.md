@@ -41,7 +41,7 @@ Todo cambio en la red debe seguir un proceso formal que incluya: procedimientos 
 | **MTBF** (Mean Time Between Failures) | Tiempo medio entre fallos consecutivos. Se mide por tipo de fallo, por severidad y globalmente. |
 | **MTBM** (Mean Time Between Mistakes) | Tiempo medio entre errores humanos. Un MTBM bajo indica un sistema frágil o excesivamente complejo. |
 | **Dwell time** | Tiempo que el fallo existe antes de ser detectado. Objetivo: minimizarlo. |
-| **MTTR** (Mean Time To Repair) | Tiempo total de indisponibilidad. Puede incluir o no el dwell time (depende de la política local). |
+| **MTTR** (Mean Time To Repair) | Tiempo medio de indisponibilidad. Puede incluir o no el dwell time (depende de la política local). |
 | **MTTI** (Mean Time To Innocence) | Tiempo para demostrar que el problema no es de la red. Consejo: no te centres en esto; toma ownership del problema y ayuda aunque no sea "tu culpa". |
 
 #### Resiliencia y fragilidad
