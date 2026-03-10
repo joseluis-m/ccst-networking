@@ -53,13 +53,13 @@ A) Transportar datos de usuario a alta velocidad
 
 B) Conectar a la red de gestión out-of-band (OOB)
 
-C) Proporcionar acceso directo al CLI para configuración inicial o recuperación
+C) Proporcionar acceso directo al CLI
 
 D) Suministrar alimentación PoE a dispositivos conectados
 
 <details>
 <summary>Respuesta</summary>
-✅ Correcta: C) Proporcionar acceso directo al CLI para configuración inicial o recuperación
+✅ Correcta: C) Proporcionar acceso directo al CLI
 
 💡 Explicación: El puerto console ofrece acceso directo al CLI del dispositivo para configuración inicial o recuperación cuando no hay conectividad de red. Es el "plan B" si falla todo lo demás. Opera a baja velocidad (9600-115200 bps) y usa conectores RJ-45, USB o serie. La opción B describe el puerto management (OOB), no el console.
 </details>
@@ -158,13 +158,13 @@ A) Descarta la trama silenciosamente
 
 B) Envía un mensaje ICMP de error al origen
 
-C) Reenvía la trama por todos los puertos activos excepto el de origen (flooding)
+C) Reenvía la trama por todos los puertos activos excepto el de origen
 
 D) Almacena la trama hasta que el destino envíe tráfico y se registre su MAC
 
 <details>
 <summary>Respuesta</summary>
-✅ Correcta: C) Reenvía la trama por todos los puertos activos excepto el de origen (flooding)
+✅ Correcta: C) Reenvía la trama por todos los puertos activos excepto el de origen
 
 💡 Explicación: Cuando la MAC destino es desconocida (no está en la tabla), el switch realiza flooding: reenvía la trama por todos los puertos activos excepto el puerto por donde la recibió. Cuando el destino responda, el switch aprenderá su MAC (bridge learning) y las tramas siguientes se enviarán solo al puerto correcto (forwarding).
 </details>
@@ -310,13 +310,13 @@ A) En cada puerto Ethernet individual
 
 B) En el puerto console
 
-C) En la interfaz VLAN 1 (o la VLAN de gestión)
+C) En la interfaz VLAN 1
 
 D) En la interfaz loopback 0
 
 <details>
 <summary>Respuesta</summary>
-✅ Correcta: C) En la interfaz VLAN 1 (o la VLAN de gestión)
+✅ Correcta: C) En la interfaz VLAN 1
 
 💡 Explicación: Los puertos individuales de un switch no necesitan dirección IP porque solo conmutan tramas por MAC. Se configura una única dirección IP en la interfaz VLAN 1 (o la VLAN de gestión designada) para permitir acceso remoto al switch vía Telnet o SSH. El puerto console es para acceso físico directo al CLI, no para gestión IP remota.
 </details>
@@ -333,7 +333,7 @@ B) El patch panel permite reconectar cableado sin manipular los cables permanent
 
 C) El patch panel proporciona PoE; el switch no
 
-D) No hay diferencia funcional; son términos intercambiables
+D) El switch permite reconectar cableado sin manipular los cables permanentes de la instalación; el patch panel conmuta tráfico de red activamente
 
 <details>
 <summary>Respuesta</summary>
@@ -348,11 +348,11 @@ D) No hay diferencia funcional; son términos intercambiables
 
 ¿Cuáles de las siguientes afirmaciones describen correctamente cómo funciona el envío de un paquete a una red remota? (Elige dos)
 
-A) El host pone como MAC destino la dirección MAC de su default gateway (router)
+A) El host pone como MAC destino la dirección MAC de su default gateway
 
 B) El host pone como MAC destino la dirección MAC del host destino final
 
-C) La dirección IP destino se mantiene igual durante todo el camino a través de los routers
+C) La dirección IP destino se mantiene igual durante todo el camino
 
 D) La dirección IP destino cambia en cada salto de router
 
@@ -360,7 +360,7 @@ D) La dirección IP destino cambia en cada salto de router
 <summary>Respuesta</summary>
 ✅ Correcta: A) y C)
 
-💡 Explicación: Para destinos remotos, el host construye la trama con MAC destino = MAC del router (default gateway) y la IP destino = IP del host final. En cada salto, la cabecera de capa 2 (MAC) cambia (se reemplaza con la MAC del siguiente salto), pero la cabecera de capa 3 (IP) permanece igual durante todo el camino. Esta es una distinción fundamental del examen.
+💡 Explicación: Para destinos remotos, el host construye la trama con MAC destino = MAC del router (default gateway) y la IP destino = IP del host final. En cada salto, la cabecera de capa 2 (MAC) cambia (se reemplaza con la MAC del siguiente salto), pero la cabecera de capa 3 (IP) permanece igual durante todo el camino a través de los routers. Esta es una distinción fundamental del examen.
 </details>
 
 ---
@@ -415,7 +415,7 @@ A) Cada VLAN es un broadcast domain separado — los broadcasts de una VLAN no l
 
 B) Los dispositivos en VLANs diferentes pueden comunicarse directamente sin necesidad de un router
 
-C) Los dispositivos en la misma VLAN pueden comunicarse directamente como si estuvieran en el mismo switch físico
+C) Los dispositivos en la misma VLAN pueden comunicarse directamente
 
 D) Las VLANs solo pueden configurarse si todos los puertos están en el mismo switch físico
 
@@ -453,9 +453,9 @@ D) Dejar cables colgando de sus conectores para facilitar el acceso rápido
 
 ¿Cuáles de las siguientes son diferencias entre el puerto console y el puerto management de un router Cisco? (Elige dos)
 
-A) El puerto console proporciona acceso directo al CLI para configuración inicial; el management conecta a una red OOB de gestión
+A) El puerto console proporciona acceso directo al CLI; el management conecta a una red OOB de gestión
 
-B) El puerto console opera a alta velocidad (10 Gbps); el management opera a baja velocidad
+B) El puerto console opera a alta velocidad (10 Gbps); el management opera a baja velocidad (1 Gbps o inferior)
 
 C) El management nunca transporta datos de usuario; se reserva exclusivamente para administración del dispositivo
 
@@ -663,13 +663,13 @@ A) Descartar la trama porque la MAC destino no está registrada
 
 B) Reenviar la trama solo por el puerto Fa0/3
 
-C) Reenviar la trama por los puertos Fa0/2 y Fa0/3 (flooding por todos excepto Fa0/1)
+C) Reenviar la trama por los puertos Fa0/2 y Fa0/3
 
 D) Enviar un mensaje de error ARP al Host A
 
 <details>
 <summary>Respuesta</summary>
-✅ Correcta: C) Reenviar la trama por los puertos Fa0/2 y Fa0/3 (flooding por todos excepto Fa0/1)
+✅ Correcta: C) Reenviar la trama por los puertos Fa0/2 y Fa0/3
 
 💡 Explicación: La MAC 0000.DD44.4444 no está en la tabla del switch, así que realiza flooding: reenvía la trama por todos los puertos activos excepto el de origen (Fa0/1). Esto significa que la trama sale por Fa0/2 y Fa0/3. Si el dispositivo destino responde, el switch aprenderá su MAC y la asociará al puerto correspondiente.
 </details>
