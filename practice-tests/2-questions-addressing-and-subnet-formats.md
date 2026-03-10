@@ -50,9 +50,9 @@ D) D
 
 A) NAT funciona en capa 2 y PAT funciona en capa 3
 
-B) NAT traduce solo direcciones IP, mientras que PAT traduce direcciones IP y puertos, permitiendo que múltiples hosts compartan una sola IP pública
+B) NAT traduce solo direcciones IP, mientras que PAT traduce direcciones IP y puertos
 
-C) PAT requiere IPv6 y NAT funciona solo con IPv4
+C) PAT traduce solo direcciones IP, mientras que NAT traduce direcciones IP y puertos
 
 D) NAT modifica las direcciones MAC y PAT modifica las direcciones IP
 
@@ -365,7 +365,7 @@ D) 169.254.10.1
 
 A) El dispositivo NAT reemplaza la dirección IP origen privada del paquete por su dirección IP pública antes de enviarlo a Internet
 
-B) NAT opera en la capa 2 del modelo OSI modificando las direcciones MAC
+B) NAT opera en la capa 2 del modelo OSI modificando las direcciones MAC y consultando su tabla de traducciones para reenviar el paqueteo
 
 C) Cuando llega una respuesta de Internet, el NAT consulta su tabla de traducciones para reenviar el paquete al host interno correcto
 
