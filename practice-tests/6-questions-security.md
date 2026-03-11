@@ -371,7 +371,7 @@ D) Es más rápido que el cifrado simétrico y se usa para cifrar grandes volúm
 
 ¿Cuáles de las siguientes son formas comunes de implementar 2FA (Two-Factor Authentication)? (Elige dos)
 
-A) Token rotativo que genera un código cada ~60 segundos, sincronizado con el servidor
+A) Token rotativo que genera un código cada ~60 segundos
 
 B) Usar dos contraseñas diferentes en el mismo formulario de login
 
@@ -389,66 +389,91 @@ D) Introducir el mismo PIN dos veces para confirmación
 ---
 
 **Pregunta 19. [Multiple Choice — Choose Two]**
+
 ¿Cuáles de las siguientes son diferencias entre un DDoS directo (burner) y un DDoS por reflexión? (Elige dos)
 
-A) En el directo, los dispositivos del botnet envían tráfico con sus IPs reales, quedando expuestos ("quemados")
-B) En el directo, las IPs de los dispositivos están falsificadas (spoofed)
-C) En el de reflexión, el botnet envía tráfico con la IP falsificada de la víctima a servidores legítimos que amplifican la respuesta
-D) En el de reflexión, los dispositivos del botnet quedan expuestos y deben ser reemplazados
+A) En el directo, los dispositivos del botnet envían tráfico con sus IPs reales, quedando expuestos
 
-<respuesta>
+B) En el directo, las IPs de los dispositivos están falsificadas (spoofed) para evitar ser detectados
+
+C) En el de reflexión, el botnet envía tráfico con la IP falsificada de la víctima a servidores legítimos que amplifican la respuesta
+
+D) En el de reflexión, los dispositivos del botnet quedan expuestos y deben ser reemplazados para continuar enviando tráfico a la víctima
+
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: A) y C)
+
 💡 Explicación: En el DDoS directo, el botnet envía tráfico con IPs reales → los dispositivos quedan expuestos/"quemados" (A), sin spoofing. En el de reflexión, el botnet falsifica la IP origen (la IP de la víctima) y envía consultas a servidores legítimos (DNS) que responden con paquetes grandes hacia la víctima, amplificando el ataque (C). El de reflexión no "quema" el botnet porque las IPs reales nunca se exponen.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 20. [Multiple Choice — Choose Two]**
+
 Un administrador de red quiere proteger el correo electrónico corporativo contra suplantación de identidad del remitente. ¿Cuáles de los siguientes mecanismos debería implementar? (Elige dos)
 
 A) DKIM — el servidor emisor firma los campos del email con su clave privada, y el receptor verifica con la clave pública publicada en DNS
-B) PoE — alimentar los servidores de correo directamente por el cable Ethernet
-C) SPF — registro DNS que lista las IPs autorizadas para enviar correo desde el dominio
-D) NAT — traducir las direcciones IP del servidor de correo
 
-<respuesta>
+B) PoE — alimentar los servidores de correo directamente por el cable Ethernet evitando manejar cableado eléctrico o buscar enchufes extra
+
+C) SPF — registro DNS que lista las IPs autorizadas para enviar correo desde el dominio
+
+D) NAT — traducir las direcciones IP del servidor de correo, permitiendo que se comunique con redes externas
+
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: A) y C)
+
 💡 Explicación: DKIM verifica la integridad del email firmando campos (from, to, body, subject) con la clave privada del servidor emisor (A). SPF publica un registro DNS con las IPs autorizadas para enviar correo del dominio, descartando emails de IPs no autorizadas (C). Juntos, con DMARC como política combinada, son la defensa estándar contra suplantación de email. PoE y NAT no tienen relación con seguridad de correo.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 21. [Multiple Choice — Choose Two]**
+
 ¿Cuáles de las siguientes son buenas prácticas para la seguridad de una red Wi-Fi doméstica? (Elige dos)
 
 A) Cambiar siempre el SSID y la contraseña por defecto de fábrica
+
 B) Deshabilitar todo cifrado para mejorar la velocidad de conexión
+
 C) Usar WPA-PSK como mínimo; WPA2 o WPA3 es preferible
+
 D) Mantener el SSID y contraseña de fábrica para facilitar la reconexión de dispositivos
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: A) y C)
+
 💡 Explicación: Las buenas prácticas incluyen: cambiar siempre el SSID y contraseña por defecto (A) para evitar que atacantes conozcan las credenciales de fábrica, y usar siempre cifrado con WPA-PSK como mínimo (C) — sin cifrado, cualquiera puede capturar los datos (wardriving). Deshabilitar el cifrado (B) y mantener credenciales de fábrica (D) son prácticas peligrosas que exponen la red.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 22. [Multiple Choice — Choose Two]**
+
 ¿Cuáles de los siguientes son ejemplos de ataques supply chain documentados? (Elige dos)
 
 A) Un atacante accedió a la red de Target a través del proveedor de HVAC (climatización)
-B) Un usuario olvidó su contraseña y fue bloqueado del sistema
+
+B) Un usuario olvidó su contraseña y fue bloqueado del sistema para evitar que pueda acceder
+
 C) SolarWinds distribuyó una actualización de software que contenía código malicioso a miles de organizaciones
+
 D) Un switch perdió su tabla MAC tras un reinicio rutinario
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: A) y C)
+
 💡 Explicación: Los supply chain attacks entran a través de proveedores o software de terceros. Target fue comprometido vía su proveedor de HVAC (A). SolarWinds distribuyó una actualización de código infectado que afectó a miles de organizaciones (C). Microsoft Exchange Server (backdoor) es otro ejemplo documentado. Las opciones B y D son incidentes operativos normales, no ataques.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 23. [Drag and Drop]**
+
 Arrastra cada pilar de la tríada CIA a su definición correcta.
 
 **Elementos a arrastrar:**
@@ -461,17 +486,23 @@ Arrastra cada pilar de la tríada CIA a su definición correcta.
 - Confianza en que los datos no han sido modificados durante almacenamiento o transmisión
 - Capacidad de los usuarios de acceder a los recursos y datos que necesitan para trabajar
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta:
+
 - Confidentiality → Proteger la información del acceso por partes no autorizadas
+
 - Integrity → Confianza en que los datos no han sido modificados durante almacenamiento o transmisión
+
 - Availability → Capacidad de los usuarios de acceder a los recursos y datos que necesitan para trabajar
+
 💡 Explicación: Los tres pilares de CIA cubren aspectos complementarios de la seguridad. Confidentiality protege el acceso (cifrado, control de acceso). Integrity asegura que los datos no se alteran (hashes, cifrado). Availability garantiza que los recursos estén disponibles (resiliencia, redundancia frente a DDoS).
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 24. [Drag and Drop]**
+
 Arrastra cada fase de AAA a su función.
 
 **Elementos a arrastrar:**
@@ -484,17 +515,23 @@ Arrastra cada fase de AAA a su función.
 - Verificar los permisos del usuario para acceder a un recurso específico
 - Registrar qué hace el usuario: qué datos envía, recibe, a qué accede y cuándo
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta:
+
 - Authentication → Verificar la identidad del usuario mediante credenciales
+
 - Authorization → Verificar los permisos del usuario para acceder a un recurso específico
+
 - Accounting → Registrar qué hace el usuario: qué datos envía, recibe, a qué accede y cuándo
+
 💡 Explicación: Las tres fases de AAA son secuenciales: primero se autentica (¿quién eres?), luego se autoriza (¿qué puedes hacer?), y finalmente se registra toda la actividad (¿qué hiciste?). En un escenario típico, el router intercepta la solicitud, el servidor AAA autentica, el router evalúa el token contra políticas de autorización, y registra todo el tráfico.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 25. [Drag and Drop]**
+
 Arrastra cada tipo de ataque a su descripción.
 
 **Elementos a arrastrar:**
@@ -509,18 +546,25 @@ Arrastra cada tipo de ataque a su descripción.
 - Atacante entre dos partes que descifra y re-cifra tráfico transparentemente
 - Malware que cifra los datos del usuario y exige pago para entregar la clave de descifrado
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta:
+
 - Phishing → Correo personalizado que imita organizaciones de confianza para obtener credenciales
+
 - Spam → Correo masivo no personalizado enviado a muchas personas (publicidad, estafas)
+
 - MITM → Atacante entre dos partes que descifra y re-cifra tráfico transparentemente
+
 - Ransomware → Malware que cifra los datos del usuario y exige pago para entregar la clave de descifrado
-💡 Explicación: La diferencia clave entre spam y phishing es la personalización: spam es masivo e indiscriminado; phishing está diseñado para un destinatario específico. MITM intercepta comunicaciones sin que las partes lo noten. Ransomware es un subtipo de malware enfocado en extorsión directa mediante cifrado de datos.
-</respuesta>
+
+💡 Explicación: La diferencia clave entre spam y phishing es la personalización: spam es masivo e indiscriminado; phishing está diseñado para un destinatario específico. Man in the middle (MITM) intercepta comunicaciones sin que las partes lo noten. Ransomware es un subtipo de malware enfocado en extorsión directa mediante cifrado de datos.
+</details>
 
 ---
 
 **Pregunta 26. [Drag and Drop]**
+
 Arrastra cada protocolo de seguridad Wi-Fi a su estado actual y característica principal.
 
 **Elementos a arrastrar:**
@@ -535,18 +579,25 @@ Arrastra cada protocolo de seguridad Wi-Fi a su estado actual y característica 
 - 2004; cifrado AES más robusto; ampliamente desplegado como estándar
 - 2018; el más seguro; protección contra ataques offline de diccionario
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta:
+
 - WEP → Retirado en 2004, nunca usar; claves de 64/128 bits
+
 - WPA → 2003; introdujo claves 256-bit, MIC e integridad; superado por WPA2/WPA3
+
 - WPA2 → 2004; cifrado AES más robusto; ampliamente desplegado como estándar
+
 - WPA3 → 2018; el más seguro; protección contra ataques offline de diccionario
+
 💡 Explicación: La evolución de seguridad Wi-Fi va de WEP (inseguro, retirado) → WPA (mejora significativa) → WPA2 (estándar durante años) → WPA3 (recomendado actual). Cada versión aumenta la seguridad del cifrado y la autenticación. WEP nunca es una respuesta correcta como opción de seguridad.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 27. [Drag and Drop]**
+
 Arrastra cada factor de autenticación a su categoría.
 
 **Elementos a arrastrar:**
@@ -560,19 +611,26 @@ Arrastra cada factor de autenticación a su categoría.
 - Something you have (algo que tienes)
 - Something you are (algo que eres)
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta:
+
 - Contraseña o PIN → Something you know
+
 - Teléfono móvil con app de autenticación → Something you have
+
 - Huella dactilar → Something you are
+
 - Hardware token USB → Something you have
+
 💡 Explicación: Los factores se agrupan en tres categorías: conocimiento (contraseñas, PINs), posesión (dispositivos físicos como teléfonos, tokens USB, tarjetas) y biométricos (huella, iris, reconocimiento facial). MFA combina factores de categorías diferentes. Usar dos contraseñas sigue siendo un solo factor (know), no MFA.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 28. [Hotspot]**
-*Descripción: Se muestra la siguiente tabla de reglas ACL aplicada a la interfaz de entrada de un router:*
+
+Se muestra la siguiente tabla de reglas ACL aplicada a la interfaz de entrada de un router:
 
 ```
 access-list 110 permit tcp 192.168.1.0 0.0.0.255 any eq 443
@@ -583,20 +641,23 @@ access-list 110 deny tcp any any eq 23
 
 Un host con IP 192.168.1.50 intenta establecer una conexión Telnet (TCP puerto 23) hacia un servidor externo. **Señala qué regla se aplicará y qué acción se tomará.**
 
-A) La regla 1 (permit TCP 443) — se permite la conexión
-B) La regla 2 (permit TCP 80) — se permite la conexión
-C) La regla 3 (deny TCP 23) — se bloquea la conexión Telnet
+A) La regla 1
+B) La regla 2
+C) La regla 3
 D) El deny implícito al final — se bloquea porque no hay regla permit para Telnet
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: C) La regla 3 (deny TCP 23) — se bloquea la conexión Telnet
+
 💡 Explicación: Las reglas ACL se evalúan en orden. La regla 1 no coincide (el puerto destino es 443, no 23). La regla 2 tampoco (puerto 80). La regla 3 coincide: deny TCP desde cualquier origen (any) hacia cualquier destino (any) en puerto 23. El paquete Telnet es bloqueado explícitamente. Aunque el deny implícito al final también lo bloquearía, la regla 3 explícita se aplica primero.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 29. [Hotspot]**
-*Descripción: Se muestra una tabla con cuatro escenarios de red Wi-Fi. Se pide identificar cuál es la configuración más segura para una red corporativa.*
+
+Se muestra una tabla con cuatro escenarios de red Wi-Fi. Se pide identificar cuál es la configuración más segura para una red corporativa.
 
 | Escenario | Protocolo | Modo | Servidor externo |
 |-----------|-----------|------|-----------------|
@@ -607,15 +668,18 @@ D) El deny implícito al final — se bloquea porque no hay regla permit para Te
 
 **Señala el escenario que ofrece la configuración más segura para un entorno corporativo.**
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: Escenario C — WPA2 Enterprise con servidor RADIUS
+
 💡 Explicación: Para un entorno corporativo, WPA2 Enterprise con RADIUS (C) es la opción más segura: utiliza WPA2 (cifrado AES robusto) con modo Enterprise, donde cada usuario tiene credenciales individuales proporcionadas por un servidor RADIUS externo. El atacante no puede derivar la clave inicial. WEP (A) está retirado. WPA2-PSK (B) usa clave compartida (menos seguro que Enterprise). WPA-PSK (D) es más antiguo y menos seguro que WPA2.
-</respuesta>
+</details>
 
 ---
 
 **Pregunta 30. [Hotspot]**
-*Descripción: Se muestra un diagrama del proceso de filtrado stateful de un firewall con las siguientes etapas:*
+
+Se muestra un diagrama del proceso de filtrado stateful de un firewall con las siguientes etapas:
 
 | Etapa | Evento |
 |-------|--------|
@@ -625,17 +689,22 @@ D) El deny implícito al final — se bloquea porque no hay regla permit para Te
 | **4** | A envía ACK → conexión TCP establecida |
 | **5** | Host externo D (no solicitado) envía TCP SYN hacia A |
 
-**Señala la etapa 5. ¿Qué acción toma el firewall B cuando el host externo D intenta iniciar una conexión no solicitada hacia A?**
+**En la etapa 5, ¿qué acción toma el firewall B cuando el host externo D intenta iniciar una conexión no solicitada hacia A?**
 
 A) Permite el SYN de D porque es tráfico TCP válido
+
 B) Permite el SYN de D porque la conexión con C ya está establecida
+
 C) Descarta el SYN de D porque no existe estado previo de una conexión iniciada por A hacia D
+
 D) Reenvía el SYN de D al servidor AAA para autenticación
 
-<respuesta>
+<details>
+<summary>Respuesta</summary>
 ✅ Correcta: C) Descarta el SYN de D porque no existe estado previo de una conexión iniciada por A hacia D
+
 💡 Explicación: El filtrado stateful rastrea el estado de cada conexión TCP. El "agujero" temporal abierto en la etapa 2 solo permite tráfico del servidor C (con quien A inició la conversación). Cuando D intenta iniciar una conexión nueva hacia A, el firewall no encuentra estado previo — A nunca envió un SYN a D — y descarta el paquete. Cada conexión tiene su propio estado independiente. Esto es el "espejo unidireccional": permite respuestas de conexiones iniciadas desde dentro, bloquea todo lo demás desde fuera.
-</respuesta>
+</details>
 
 ---
 
