@@ -642,8 +642,11 @@ access-list 110 deny tcp any any eq 23
 Un host con IP 192.168.1.50 intenta establecer una conexión Telnet (TCP puerto 23) hacia un servidor externo. **Señala qué regla se aplicará y qué acción se tomará.**
 
 A) La regla 1
+
 B) La regla 2
+
 C) La regla 3
+
 D) El deny implícito al final — se bloquea porque no hay regla permit para Telnet
 
 <details>
