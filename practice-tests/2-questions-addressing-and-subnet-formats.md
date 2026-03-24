@@ -365,7 +365,7 @@ D) 169.254.10.1
 
 A) El dispositivo NAT reemplaza la dirección IP origen privada del paquete por su dirección IP pública antes de enviarlo a Internet
 
-B) NAT opera en la capa 2 del modelo OSI modificando las direcciones MAC y consultando su tabla de traducciones para reenviar el paqueteo
+B) NAT opera en la capa 2 del modelo OSI modificando las direcciones MAC y consultando su tabla de traducciones para reenviar el paquete
 
 C) Cuando llega una respuesta de Internet, el NAT consulta su tabla de traducciones para reenviar el paquete al host interno correcto
 
